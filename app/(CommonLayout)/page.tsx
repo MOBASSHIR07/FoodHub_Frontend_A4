@@ -2,6 +2,7 @@ import Features from "@/components/Home/Features";
 import Hero from "@/components/Home/Hero";
 
 
+
 export default function HomePage() {
   return (
     <div className="flex flex-col w-full">
@@ -16,6 +17,7 @@ export default function HomePage() {
       
       {/* Section 4: Why Us (Coming Next) */}
      <Features/>
+    
     </div>
   );
 }
