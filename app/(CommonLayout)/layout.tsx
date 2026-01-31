@@ -5,6 +5,7 @@ export default function CommonLayout({ children }: { children: React.ReactNode }
       {/* Global Navbar */}
       <Navbar />
       
+      
       {/* Main Content Area */}
       <main className="grow">
         {children}

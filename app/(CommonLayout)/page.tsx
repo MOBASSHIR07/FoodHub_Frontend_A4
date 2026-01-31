@@ -1,10 +1,20 @@
+import Hero from "@/components/Home/Hero";
 
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+    <div className="flex flex-col w-full">
+      {/* Section 1: Hero */}
+      <Hero />
       
-          
+      {/* Section 2: Categories (Coming Next) */}
+      {/* <Categories /> */}
+      
+      {/* Section 3: Trending (Coming Next) */}
+      {/* <Trending /> */}
+      
+      {/* Section 4: Why Us (Coming Next) */}
+      {/* <WhyUs /> */}
     </div>
   );
 }
