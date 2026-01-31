@@ -1,11 +1,15 @@
 
+
 import { providerService } from "@/service/provider.service";
 import ProviderCarousel from "./ProviderCarousel";
 
 export default async function FeaturedProviders() {
   const { data: providers, error } = await providerService.getProviders();
+  
+  
 
-  if (error || !providers || providers.length === 0) return null;
+  if (error) return <div>Error loading kitchens: {error.message}</div>;
+  if (!providers || providers.length === 0) return <div>No kitchens found!</div>;
 
   return (
     <section className="py-24 bg-white overflow-hidden">

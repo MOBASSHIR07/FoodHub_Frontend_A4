@@ -20,17 +20,17 @@ export default function ProviderCarousel({ providers }: { providers: Provider[] 
   return (
     <div className="relative group">
       {/* Navigation Buttons */}
-      <div className="absolute -top-20 right-0 flex gap-3">
+      <div className="absolute -top-15 right-0 flex gap-3">
         <button 
           onClick={() => scroll("left")} 
-          className="p-3 rounded-full border border-gray-200 bg-white hover:bg-orange-600 hover:text-white transition-all shadow-sm active:scale-95"
+          className="p-2 rounded-full border border-gray-200 bg-white hover:bg-orange-600 hover:text-white transition-all shadow-sm active:scale-95"
           aria-label="Scroll Left"
         >
           <ChevronLeft className="h-6 w-6" />
         </button>
         <button 
           onClick={() => scroll("right")} 
-          className="p-3 rounded-full border border-gray-200 bg-white hover:bg-orange-600 hover:text-white transition-all shadow-sm active:scale-95"
+          className="p-2 rounded-full border border-gray-200 bg-white hover:bg-orange-600 hover:text-white transition-all shadow-sm active:scale-95"
           aria-label="Scroll Right"
         >
           <ChevronRight className="h-6 w-6" />
@@ -45,8 +45,8 @@ export default function ProviderCarousel({ providers }: { providers: Provider[] 
         {providers.map((provider) => (
           <Link 
             key={provider.id} 
-            href={`/providers/${provider.id}`}
-            className="flex-shrink-0 w-[300px] md:w-[350px] snap-start group/card"
+            href={`/provider/${provider.id}`}
+            className="flex-shrink-0 w-[300px] md:w-87.5 snap-start group/card"
           >
             <div className="h-full bg-white rounded-[2.5rem] border border-gray-100 overflow-hidden hover:shadow-2xl hover:shadow-orange-100 transition-all duration-500 flex flex-col">
               
@@ -57,6 +57,7 @@ export default function ProviderCarousel({ providers }: { providers: Provider[] 
                     src={provider.coverImage}
                     alt={provider.businessName}
                     fill
+                    unoptimized
                     className="object-cover transition-transform duration-700 group-hover/card:scale-110"
                   />
                 ) : (

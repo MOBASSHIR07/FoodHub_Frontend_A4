@@ -18,6 +18,7 @@ export const env = createEnv({
   client: {
     NEXT_PUBLIC_APP_URL: z.url(),
     NEXT_PUBLIC_BETTER_AUTH_URL: z.url(),
+    NEXT_PUBLIC_SITE_URL: z.url()
   },
 
   /*
@@ -28,5 +29,6 @@ export const env = createEnv({
     BACKEND_URL: process.env.BACKEND_URL,
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     NEXT_PUBLIC_BETTER_AUTH_URL: process.env.NEXT_PUBLIC_BETTER_AUTH_URL,
+    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL
   },
 });
