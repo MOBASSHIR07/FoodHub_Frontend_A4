@@ -2,36 +2,28 @@
 
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation"; 
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import {
-    UtensilsCrossed,
-    Menu,
-    ShoppingBag,
-    Search,
-    User
-} from "lucide-react";
-import { Logo } from "./Logo";
-import {
-    SheetHeader,
-    SheetTitle,
-    SheetDescription
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
+import { UtensilsCrossed, Menu, ShoppingBag, Search } from "lucide-react";
+import { cn } from "@/lib/utils"; 
 
 const navLinks = [
     { name: "Home", href: "/" },
     { name: "Meal", href: "/meal" },
     { name: "Providers", href: "/providers" },
-     { name: "Dashboard", href: "/dashboard" },
+    { name: "Dashboard", href: "/dashboard" },
     { name: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
+    const pathname = usePathname(); 
+
     return (
         <header className="sticky top-0 z-50 w-full border-b border-orange-100 bg-white/80 backdrop-blur-md">
             <div className="container mx-auto flex h-20 items-center justify-between px-6">
 
-                {/* --- 2. FANCY LOGO WITH ICON --- */}
+                {/* --- LOGO --- */}
                 <Link href="/" className="flex items-center gap-2 transition-transform hover:scale-105">
                     <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-600 shadow-lg shadow-orange-200">
                         <UtensilsCrossed className="h-6 w-6 text-white" />
@@ -41,20 +33,30 @@ export default function Navbar() {
                     </span>
                 </Link>
 
-                {/* --- 3. DESKTOP NAVIGATION --- */}
+                {/* --- DESKTOP NAVIGATION --- */}
                 <nav className="hidden lg:flex items-center gap-8">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.name}
-                            href={link.href}
-                            className="text-sm font-bold text-gray-600 transition-all hover:text-orange-600 hover:tracking-wide"
-                        >
-                            {link.name}
-                        </Link>
-                    ))}
+                    {navLinks.map((link) => {
+                        // 4. Check if the link is active
+                        const isActive = pathname === link.href;
+                        
+                        return (
+                            <Link
+                                key={link.name}
+                                href={link.href}
+                                className={cn(
+                                    "text-sm font-bold transition-all hover:text-orange-600",
+                                    isActive 
+                                        ? "text-orange-600 underline underline-offset-8 decoration-2" 
+                                        : "text-gray-600"
+                                )}
+                            >
+                                {link.name}
+                            </Link>
+                        );
+                    })}
                 </nav>
 
-                {/* --- 4. ACTION ICONS & BUTTONS --- */}
+                {/* --- ACTION ICONS & BUTTONS --- */}
                 <div className="flex items-center gap-2 md:gap-4">
                     <Button variant="ghost" size="icon" className="hidden sm:flex rounded-full text-gray-600">
                         <Search className="h-5 w-5" />
@@ -77,15 +79,13 @@ export default function Navbar() {
 
                     {/* --- RESPONSIVE MOBILE MENU --- */}
                     <div className="lg:hidden">
-                        <Sheet> {/* This is the "Dialog" parent */}
+                        <Sheet>
                             <SheetTrigger asChild>
                                 <Button variant="ghost" size="icon" className="rounded-full">
                                     <Menu className="h-6 w-6" />
                                 </Button>
                             </SheetTrigger>
-
                             <SheetContent side="right" className="w-[300px]">
-                           
                                 <SheetHeader className="text-left">
                                     <SheetTitle className="flex items-center gap-2 text-2xl font-black">
                                         <UtensilsCrossed className="h-6 w-6 text-orange-600" />
@@ -96,17 +96,22 @@ export default function Navbar() {
                                     </SheetDescription>
                                 </SheetHeader>
 
-                                {/* 2. Navigation Links */}
                                 <nav className="flex flex-col gap-6 mt-10">
-                                    {navLinks.map((link) => (
-                                        <Link
-                                            key={link.name}
-                                            href={link.href}
-                                            className="text-lg font-bold text-gray-800 transition-colors hover:text-orange-600"
-                                        >
-                                            {link.name}
-                                        </Link>
-                                    ))}
+                                    {navLinks.map((link) => {
+                                        const isActive = pathname === link.href;
+                                        return (
+                                            <Link
+                                                key={link.name}
+                                                href={link.href}
+                                                className={cn(
+                                                    "text-lg font-bold transition-colors",
+                                                    isActive ? "text-orange-600" : "text-gray-800 hover:text-orange-600"
+                                                )}
+                                            >
+                                                {link.name}
+                                            </Link>
+                                        );
+                                    })}
 
                                     <hr className="my-2 border-orange-50" />
 
@@ -124,5 +129,3 @@ export default function Navbar() {
         </header>
     );
 }
-
-
