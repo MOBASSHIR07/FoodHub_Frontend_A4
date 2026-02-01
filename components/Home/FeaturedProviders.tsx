@@ -6,8 +6,6 @@ import ProviderCarousel from "./ProviderCarousel";
 export default async function FeaturedProviders() {
   const { data: providers, error } = await providerService.getProviders();
   
-  
-
   if (error) return <div>Error loading kitchens: {error.message}</div>;
   if (!providers || providers.length === 0) return <div>No kitchens found!</div>;
 

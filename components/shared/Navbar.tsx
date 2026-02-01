@@ -18,13 +18,11 @@ import {
     SheetDescription
 } from "@/components/ui/sheet";
 
-// --- 1. SCALABLE LINK CONFIGURATION ---
-// Add or remove links here, and the whole UI (Desktop & Mobile) updates.
 const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Categories", href: "/categories" },
     { name: "Meal", href: "/meal" },
     { name: "Providers", href: "/providers" },
+     { name: "Dashboard", href: "/dashboard" },
     { name: "Contact", href: "/contact" },
 ];
 

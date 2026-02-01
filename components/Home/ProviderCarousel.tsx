@@ -45,7 +45,7 @@ export default function ProviderCarousel({ providers }: { providers: Provider[] 
         {providers.map((provider) => (
           <Link 
             key={provider.id} 
-            href={`/provider/${provider.id}`}
+            href={`/providers/${provider.id}`}
             className="flex-shrink-0 w-[300px] md:w-87.5 snap-start group/card"
           >
             <div className="h-full bg-white rounded-[2.5rem] border border-gray-100 overflow-hidden hover:shadow-2xl hover:shadow-orange-100 transition-all duration-500 flex flex-col">
