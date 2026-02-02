@@ -1,11 +1,13 @@
-import React from 'react';
+import { userService } from "@/service/user.service";
+import { redirect } from "next/navigation";
+import SignInForm from "./SignInForm";
 
-const SignIn = () => {
-    return (
-        <div>
-            
-        </div>
-    );
-};
+export default async function SignInPage() {
+  const session = await userService.getSession();
 
-export default SignIn;
+  if (session) {
+    redirect("/");
+  }
+
+  return <SignInForm />;
+}

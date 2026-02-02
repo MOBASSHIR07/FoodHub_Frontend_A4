@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Toaster } from "sonner";
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -17,6 +18,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
 
           {/* This is where your Sign-In or Sign-Up page content will appear */}
           {children}
+            <Toaster richColors  />
         </div>
       </div>
 
