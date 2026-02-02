@@ -71,7 +71,7 @@ export default function Navbar() {
 
                     <div className="hidden md:block h-8 w-[1px] bg-gray-200 mx-1" />
 
-                    <Link href="/login">
+                    <Link href="/sign-in">
                         <Button className="hidden md:flex rounded-full bg-orange-600 px-6 font-bold hover:bg-orange-700 transition-all active:scale-95 shadow-md shadow-orange-100">
                             Sign In
                         </Button>
@@ -115,7 +115,7 @@ export default function Navbar() {
 
                                     <hr className="my-2 border-orange-50" />
 
-                                    <Link href="/login">
+                                    <Link href="/sign-in">
                                         <Button className="w-full bg-orange-600 rounded-xl h-12 text-lg font-bold shadow-lg shadow-orange-100">
                                             Sign In
                                         </Button>
