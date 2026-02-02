@@ -20,7 +20,7 @@ export default async function MealDetailsPage({ params }: { params: Promise<{ id
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
           {/* LEFT: Premium Image Gallery Look */}
           <div className="lg:col-span-7">
-            <div className="relative h-[450px] md:h-[650px] w-full rounded-[4rem] overflow-hidden group shadow-2xl">
+            <div className="relative h-112.5 md:h-162.5 w-full rounded-[4rem] overflow-hidden group shadow-2xl">
               <Image src={meal.image || "/placeholder.jpg"} alt={meal.name} fill unoptimized className="object-cover transition-transform duration-1000 group-hover:scale-105" />
               
               {/* Floating Status Badges instead of ratings */}

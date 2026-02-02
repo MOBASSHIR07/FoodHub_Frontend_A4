@@ -85,7 +85,7 @@ export default function Navbar() {
                                     <Menu className="h-6 w-6" />
                                 </Button>
                             </SheetTrigger>
-                            <SheetContent side="right" className="w-[300px]">
+                            <SheetContent side="right" className="w-75">
                                 <SheetHeader className="text-left">
                                     <SheetTitle className="flex items-center gap-2 text-2xl font-black">
                                         <UtensilsCrossed className="h-6 w-6 text-orange-600" />

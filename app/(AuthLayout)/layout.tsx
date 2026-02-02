@@ -30,7 +30,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           fill 
           className="object-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-1000"
         />
-        <div className="absolute inset-0 flex flex-col justify-end p-16 bg-gradient-to-t from-black/80 to-transparent">
+        <div className="absolute inset-0 flex flex-col justify-end p-16 bg-linear-to-t from-black/80 to-transparent">
           <h2 className="text-4xl font-black text-white mb-4">The best meals from <br/> local kitchens.</h2>
           <p className="text-gray-300 font-medium">Join thousands of foodies in Dhaka.</p>
         </div>

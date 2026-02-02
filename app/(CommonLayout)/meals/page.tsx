@@ -71,7 +71,7 @@ export default async function AllMealsPage({
               </Link>
             ))}
 
-            <div className="h-4 w-[1px] bg-gray-200 mx-1" />
+            <div className="h-4 w-px bg-gray-200 mx-1" />
 
             {/* Dietary Filters */}
             {["Halal", "Vegan", "High-Protein"].map((item) => (

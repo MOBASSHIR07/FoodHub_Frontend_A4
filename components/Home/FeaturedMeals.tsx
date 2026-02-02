@@ -1,7 +1,7 @@
 import { mealService } from "@/service/meal.service";
 import { Meal } from "@/app/types/provider"; 
 import Image from "next/image";
-import { ShoppingBag, Star, MapPin } from "lucide-react";
+import {  Star, MapPin } from "lucide-react";
 
 export default async function FeaturedMeals() {
   const { data: meals, error } = await mealService.getAllMeals();

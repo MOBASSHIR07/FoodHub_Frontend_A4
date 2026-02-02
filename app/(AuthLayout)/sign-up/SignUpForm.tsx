@@ -52,7 +52,7 @@ export default function SignUpForm() {
     <div className="w-full space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       <div className="space-y-2 text-center lg:text-left">
         <h1 className="text-3xl font-black tracking-tight text-gray-900">Create Account</h1>
-        <p className="text-gray-500 font-medium font-semibold">Join FoodHub today.</p>
+        <p className="text-gray-500 font-semibold">Join FoodHub today.</p>
       </div>
 
       <form
