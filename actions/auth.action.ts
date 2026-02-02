@@ -59,6 +59,21 @@ export const signInUserAction = async (values: LoginInput) => {
         });
       }
     }
+
+    // const allCookies = cookieStore.getAll()
+    //     .map(({ name, value }) => `${name}=${value}`)
+    //     .join("; ");
+
+    //  
+    //   const requestHeaders: HeadersInit = {
+    //     "cookie": allCookies,
+    //     "Accept": "application/json",
+    //   };
+
+    //   const res = await fetch(`${AUTH_URL}/api/auth/get-session`, {
+    //     headers: requestHeaders, 
+    //     cache: "no-store",
+    //   });
     
     return { success: true };
   } catch (err) {

@@ -47,7 +47,7 @@ export const userService = {
   getSession: async () => {
     try {
       const cookieStore = await cookies();
-      const allCookies = cookieStore.toString();
+     const allCookies = cookieStore.getAll().map(c => `${c.name}=${c.value}`).join('; ');
 
       const res = await fetch(`${AUTH_URL}/api/auth/get-session`, {
         headers: { cookie: allCookies },
