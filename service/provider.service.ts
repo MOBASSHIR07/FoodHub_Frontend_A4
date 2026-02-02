@@ -3,7 +3,7 @@ import { env } from "@/env";
 const API_URL = env.BACKEND_URL; 
 
 export const providerService = {
-  getProviders: async function (revalidate = 3600) {
+  getProviders: async function (revalidate = 3) {
     try {
       const res = await fetch(`${API_URL}/provider`, {
         method: 'GET',
