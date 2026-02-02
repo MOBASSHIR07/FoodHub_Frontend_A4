@@ -3,6 +3,10 @@ import { env } from "@/env";
 import { cookies } from "next/headers";
 
 const AUTH_URL = env.BACKEND_URL;
+export interface LoginInput {
+  email: string;
+  password: string;
+}
 
 export const userService = {
 
@@ -23,7 +27,23 @@ export const userService = {
     return { data, ok: res.ok };
   },
 
-  // Session Check (For your layouts/middleware)
+
+  login: async (values:LoginInput ) => {
+    const res = await fetch(`${env.BACKEND_URL}/api/auth/sign-in/email`, {
+      method: "POST",
+      headers: { 
+        "Content-Type": "application/json",
+        "origin": env.NEXT_PUBLIC_SITE_URL || "http://localhost:5000"
+      },
+      body: JSON.stringify({
+        email: values.email,
+        password: values.password,
+      }),
+    });
+
+    return res
+  },
+
   getSession: async () => {
     try {
       const cookieStore = await cookies();
