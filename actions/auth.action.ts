@@ -36,48 +36,18 @@ export const signUpUserAction = async (values: RegisterInput) => {
 
 export const signInUserAction = async (values: LoginInput) => {
   try {
-    const res = await userService.login(values);
-    const data = await res.json();
-
-    if (!res.ok) {
-      return { success: false, message: data?.message || "Login failed" };
-    }
-
-    const cookieStore = await cookies();
-    const rawCookies = res.headers.getSetCookie();
-
-  for (const c of rawCookies) {
-      const parsed = parse(c); 
-      const name = Object.keys(parsed)[0]; 
-      const value = parsed[name];
-      if (name && typeof value === 'string') {
-        cookieStore.set(name, value, {
-          path: "/",
-          httpOnly: true,
-          secure: process.env.NODE_ENV === "production",
-          sameSite: "lax",
-        });
-      }
-    }
-
-    // const allCookies = cookieStore.getAll()
-    //     .map(({ name, value }) => `${name}=${value}`)
-    //     .join("; ");
-
-    //  
-    //   const requestHeaders: HeadersInit = {
-    //     "cookie": allCookies,
-    //     "Accept": "application/json",
-    //   };
-
-    //   const res = await fetch(`${AUTH_URL}/api/auth/get-session`, {
-    //     headers: requestHeaders, 
-    //     cache: "no-store",
-    //   });
     
+    const res = await userService.login(values);
+
+    
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => ({}));
+      return { success: false, message: errorData?.message || "Login failed" };
+    }
+
     return { success: true };
   } catch (err) {
     console.error("Login Action Error:", err);
-    return { success: false, message: "Login error" };
+    return { success: false, message: "Something went wrong during login" };
   }
 }

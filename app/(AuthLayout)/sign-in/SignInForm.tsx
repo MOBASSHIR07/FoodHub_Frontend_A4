@@ -25,26 +25,20 @@ export default function SignInForm() {
       email: "",
       password: "",
     },
-    onSubmit: async ({ value }) => {
-      const toastId = toast.loading("Signing in...");
+   onSubmit: async ({ value }) => {
+  const toastId = toast.loading("Signing in...");
 
+  const result = await signInUserAction(value);
 
-      const result = await signInUserAction(value);
+  if (!result.success) {
+    toast.error(result.message, { id: toastId });
+    return;
+  }
 
-      if (!result.success) {
-        toast.error(result.message, { id: toastId });
-        return;
-      }
-
-      toast.success("Login successful!", { id: toastId });
-
-      // 2. Hard reload to /dashboard
-
-      window.location.href = "/dashboard";
-
-      toast.success("Welcome back!", { id: toastId });
-
-    },
+  toast.success("Login successful!", { id: toastId });
+  router.push("/dashboard"); 
+  router.refresh(); 
+},
   });
 
   return (

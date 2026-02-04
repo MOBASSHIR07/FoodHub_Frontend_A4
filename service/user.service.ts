@@ -27,37 +27,69 @@ export const userService = {
     return { data, ok: res.ok };
   },
 
+login: async (values: LoginInput) => {
+  const res = await fetch(`${env.BACKEND_URL}/api/auth/sign-in/email`, {
+    method: "POST",
+    headers: { 
+      "Content-Type": "application/json",
+      "origin": env.NEXT_PUBLIC_SITE_URL || "http://localhost:5000"
+    },
+    body: JSON.stringify({
+      email: values.email,
+      password: values.password,
+    }),
+  });
 
-  login: async (values:LoginInput ) => {
-    const res = await fetch(`${env.BACKEND_URL}/api/auth/sign-in/email`, {
-      method: "POST",
+  if (res.ok) {
+    const setCookieHeader = res.headers.get("set-cookie");
+
+    if (setCookieHeader) {
+      const cookieStore = await cookies();
+      
+    
+      const tokenMatch = setCookieHeader.match(/__Secure-better-auth\.session_token=([^;]+)/);
+      const token = tokenMatch ? tokenMatch[1] : null;
+
+      if (token) {
+       
+        cookieStore.set("auth_session", token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "lax",
+          path: "/",
+          maxAge: 604800,
+        });
+        
+       
+      }
+    }
+  }
+
+  return res;
+},
+
+getSession: async () => {
+  try {
+    const cookieStore = await cookies();
+   
+    const myAuthCookie = cookieStore.get("auth_session")?.value;
+
+    if (!myAuthCookie) return null;
+
+    const cookieString = `__Secure-better-auth.session_token=${myAuthCookie}`;
+
+    const res = await fetch(`${AUTH_URL}/api/auth/get-session`, {
+      method: "GET",
       headers: { 
-        "Content-Type": "application/json",
-        "origin": env.NEXT_PUBLIC_SITE_URL || "http://localhost:5000"
+        "Cookie": cookieString 
       },
-      body: JSON.stringify({
-        email: values.email,
-        password: values.password,
-      }),
+      cache: "no-store",
     });
 
-    return res
-  },
-
-  getSession: async () => {
-    try {
-      const cookieStore = await cookies();
-     const allCookies = cookieStore.getAll().map(c => `${c.name}=${c.value}`).join('; ');
-
-      const res = await fetch(`${AUTH_URL}/api/auth/get-session`, {
-        headers: { cookie: allCookies },
-        cache: "no-store",
-      });
-
-      if (!res.ok) return null;
-      return await res.json();
-    } catch (error) {
-      return null;
-    }
-  },
+    if (!res.ok) return null;
+    return await res.json();
+  } catch (error) {
+    return null;
+  }
+},
 };
