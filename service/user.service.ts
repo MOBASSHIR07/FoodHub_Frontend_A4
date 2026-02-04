@@ -92,4 +92,51 @@ getSession: async () => {
     return null;
   }
 },
+
+
+
+
+
+getAllUsers: async () => {
+  try {
+    const cookieStore = await cookies();
+    const myAuthCookie = cookieStore.get("auth_session")?.value;
+
+    if (!myAuthCookie) {
+      console.error("No auth cookie found");
+      return { data: [], ok: false };
+    }
+
+    const cookieString = `__Secure-better-auth.session_token=${myAuthCookie}`;
+
+    const res = await fetch(`${AUTH_URL}/admin/users`, {
+      method: "GET",
+      headers: {
+        Cookie: cookieString,
+      },
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      console.error(`Failed to fetch users: ${res.status}`);
+      return { data: [], ok: false };
+    }
+
+    const data = await res.json();
+    return { data, ok: true };
+  } catch (error) {
+    console.error("Get all users error:", error);
+    return { data: [], ok: false };
+  }
+},
+
+
+
+
+
+
+
+
+
+
 };

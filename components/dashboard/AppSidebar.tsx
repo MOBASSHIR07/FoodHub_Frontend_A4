@@ -1,6 +1,6 @@
 "use client";
 
-import { ClipboardList, Package, Settings, ShoppingCart, Users, Utensils, Zap, LayoutDashboard } from "lucide-react";
+import { ClipboardList, Package, Settings, ShoppingCart, Users, Utensils, Zap, LayoutDashboard, Grid2X2, PlusCircle, UserCheck } from "lucide-react";
 import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarHeader } from "../ui/sidebar";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -10,27 +10,27 @@ export function AppSidebar({ role }: { role: string }) {
   const pathname = usePathname();
 
   const menuItems = {
-    ADMIN: [
-      // Changed from /dashboard/admin to /dashboard/admin-dashboard
-      { title: "Overview", url: "/dashboard/admin-dashboard", icon: LayoutDashboard },
-      { title: "Manage Users", url: "/dashboard/admin-dashboard/users", icon: Users },
-      { title: "All Orders", url: "/dashboard/admin-dashboard/orders", icon: ShoppingCart },
-    ],
+ ADMIN: [
+  { title: "User Directory", url: "/admin-dashboard/users", icon: Users },
+  { title: "Category List", url: "/dashboard/categories", icon: Grid2X2 },
+  { title: "Create Category", url: "/dashboard/categories/create", icon: PlusCircle },
+  { title: "All Orders History", url: "/dashboard/orders", icon: ShoppingCart },
+],
     PROVIDER: [
-      // Changed from /dashboard/provider to /dashboard/provider-dashboard
+    
       { title: "Kitchen", url: "/dashboard/provider-dashboard", icon: Utensils },
       { title: "Menu Items", url: "/dashboard/provider-dashboard/menu", icon: ClipboardList },
       { title: "Orders", url: "/dashboard/provider-dashboard/orders", icon: Package },
     ],
     CUSTOMER: [
-      // Changed from /dashboard/user to /dashboard (your root dashboard)
+      
       { title: "Browse Food", url: "/dashboard", icon: ShoppingCart },
       { title: "My Orders", url: "/dashboard/my-orders", icon: Package },
       { title: "Profile", url: "/dashboard/profile", icon: Settings },
     ],
   };
 
-  // Logic remains the same: pick menu based on role
+
   const currentMenu = menuItems[role as keyof typeof menuItems] || [];
 
   return (

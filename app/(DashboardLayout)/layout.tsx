@@ -3,6 +3,7 @@ import { DashboardLayoutProps, UserRole } from "../types/provider";
 import { redirect } from "next/navigation";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/dashboard/AppSidebar";
+import { Toaster } from "sonner";
 
 export default async function DashboardLayout({ 
   admin, 
@@ -26,6 +27,7 @@ export default async function DashboardLayout({
     <SidebarProvider>
       <AppSidebar role={role} /> 
       <SidebarInset>
+         <Toaster richColors  position="top-center" expand={false} />
       {dashboardSlots[role] || children}
       </SidebarInset>
     </SidebarProvider>
