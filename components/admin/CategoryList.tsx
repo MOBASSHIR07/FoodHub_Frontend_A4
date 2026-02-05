@@ -40,10 +40,10 @@ export default function CategoryList({ initialCategories = [] }: { initialCatego
               toast.success("Category removed successfully!", { id: tid });
               setCategories((prev) => prev.filter((cat) => cat.id !== id));
             } else {
-              // ✅ ব্যাকএন্ড থেকে আসা স্পেসিফিক মেসেজ (যেমন: Meals assigned) এখানে দেখাবে
+             
               toast.error(res.message || "Unauthorized or Delete failed!", { 
                 id: tid,
-                duration: 5000, // মেসেজটি পড়ার জন্য একটু বেশি সময় দিন
+                duration: 5000,
                 icon: <Info className="text-rose-500" size={18} />
               });
             }

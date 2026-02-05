@@ -17,7 +17,7 @@ export default async function UsersPage() {
     users = response;
   }
   
-  console.log("Parsed Users Array:", users);
+ 
 
  
   const session = await userService.getSession();

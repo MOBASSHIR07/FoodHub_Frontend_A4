@@ -70,3 +70,23 @@ export interface DashboardLayoutProps {
 }
 
 export type UserRole = "ADMIN" | "PROVIDER" | "CUSTOMER";
+
+export interface OrderItem {
+  id: string;
+  quantity: number;
+  price: number;
+  meal: {
+    name: string;
+    provider: { businessName: string };
+  };
+}
+
+export interface Order {
+  id: string;
+  orderNumber: string;
+  totalAmount: number;
+  status: "PENDING" | "DELIVERED" | "CANCELLED";
+  createdAt: string;
+  customer: { name: string; email: string };
+  items: OrderItem[];
+}
