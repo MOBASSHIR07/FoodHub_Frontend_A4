@@ -12,9 +12,9 @@ export function AppSidebar({ role }: { role: string }) {
   const menuItems = {
  ADMIN: [
   { title: "User Directory", url: "/admin-dashboard/users", icon: Users },
-  { title: "Category List", url: "/dashboard/categories", icon: Grid2X2 },
-  { title: "Create Category", url: "/dashboard/categories/create", icon: PlusCircle },
-  { title: "All Orders History", url: "/dashboard/orders", icon: ShoppingCart },
+  { title: "Category List", url: "/admin-dashboard/category-list", icon: Grid2X2 },
+  { title: "Create Category", url: "/admin-dashboard/post-categories", icon: PlusCircle },
+  { title: "All Orders History", url: "/admin-dashboard/orders", icon: ShoppingCart },
 ],
     PROVIDER: [
     
