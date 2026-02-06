@@ -33,12 +33,16 @@ export function AppSidebar({ role }: { role: string }) {
         icon: Package
       },
     ],
+
     CUSTOMER: [
 
-      { title: "Browse Food", url: "/dashboard", icon: ShoppingCart },
-      { title: "My Orders", url: "/dashboard/my-orders", icon: Package },
-      { title: "Profile", url: "/dashboard/profile", icon: Settings },
-    ],
+  { title: "My Cart", url: "/dashboard",  icon: ShoppingCart  },
+
+  { title: "Order History", url: "/dashboard/my-orders", icon: Package 
+
+  },
+
+]
   };
 
 
