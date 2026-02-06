@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
 export const getAllOrdersAction = async (params: {
@@ -40,5 +41,54 @@ export const getAllOrdersAction = async (params: {
   } catch (err) {
     console.error("GET_ORDERS_ERROR:", err);
     return [];
+  }
+};
+
+
+// Fetch provider-specific orders
+export const getProviderOrdersAction = async () => {
+  try {
+    const cookieStore = await cookies();
+    const myAuthCookie = cookieStore.get("auth_session")?.value;
+    const cookieString = `__Secure-better-auth.session_token=${myAuthCookie}`;
+
+    const res = await fetch("https://foodhub-backend-a4-2.onrender.com/order/providers-order", {
+      method: "GET",
+      headers: { "Cookie": cookieString },
+      cache: "no-store",
+    });
+
+    const result = await res.json();
+    return res.ok && result.success ? result.data : [];
+  } catch (err) {
+    console.error("GET_ORDERS_ERROR:", err);
+    return [];
+  }
+};
+
+// Update order status
+export const updateOrderStatusAction = async (orderId: string, status: string) => {
+  try {
+    const cookieStore = await cookies();
+    const myAuthCookie = cookieStore.get("auth_session")?.value;
+    const cookieString = `__Secure-better-auth.session_token=${myAuthCookie}`;
+
+    const res = await fetch(`https://foodhub-backend-a4-2.onrender.com/order/status/${orderId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Cookie": cookieString,
+      },
+      body: JSON.stringify({ status }),
+    });
+
+    const result = await res.json();
+    if (res.ok) {
+      revalidatePath("/provider-dashboard/orders");
+      return { success: true, message: "Status updated" };
+    }
+    return { success: false, message: result.message };
+  } catch (err) {
+    return { success: false, message: "Network failure" };
   }
 };

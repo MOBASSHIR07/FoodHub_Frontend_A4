@@ -10,20 +10,31 @@ export function AppSidebar({ role }: { role: string }) {
   const pathname = usePathname();
 
   const menuItems = {
- ADMIN: [
-  { title: "User Directory", url: "/admin-dashboard/users", icon: Users },
-  { title: "Category List", url: "/admin-dashboard/category-list", icon: Grid2X2 },
-  { title: "Create Category", url: "/admin-dashboard/post-categories", icon: PlusCircle },
-  { title: "All Orders History", url: "/admin-dashboard/orders", icon: ShoppingCart },
-],
+    ADMIN: [
+      { title: "User Directory", url: "/admin-dashboard/users", icon: Users },
+      { title: "Category List", url: "/admin-dashboard/category-list", icon: Grid2X2 },
+      { title: "Create Category", url: "/admin-dashboard/post-categories", icon: PlusCircle },
+      { title: "All Orders History", url: "/admin-dashboard/orders", icon: ShoppingCart },
+    ],
     PROVIDER: [
-    
-      { title: "Kitchen", url: "/dashboard/provider-dashboard", icon: Utensils },
-      { title: "Menu Items", url: "/dashboard/provider-dashboard/menu", icon: ClipboardList },
-      { title: "Orders", url: "/dashboard/provider-dashboard/orders", icon: Package },
+      {
+        title: "Kitchen Profile",
+        url: "/provider-dashboard/kitchen-profile",
+        icon: Utensils
+      },
+      {
+        title: "Menu Management",
+        url: "/provider-dashboard/menu-management", 
+        icon: ClipboardList
+      },
+      {
+        title: "Live Orders",
+        url: "/provider-dashboard/orders", 
+        icon: Package
+      },
     ],
     CUSTOMER: [
-      
+
       { title: "Browse Food", url: "/dashboard", icon: ShoppingCart },
       { title: "My Orders", url: "/dashboard/my-orders", icon: Package },
       { title: "Profile", url: "/dashboard/profile", icon: Settings },
@@ -69,8 +80,8 @@ export function AppSidebar({ role }: { role: string }) {
                       asChild
                       className={cn(
                         "group relative flex items-center gap-3 px-4 py-7 rounded-[1.25rem] transition-all duration-300 border border-transparent",
-                        isActive 
-                          ? "bg-white border-slate-100 text-orange-600 shadow-xl shadow-slate-100" 
+                        isActive
+                          ? "bg-white border-slate-100 text-orange-600 shadow-xl shadow-slate-100"
                           : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
                       )}
                     >
@@ -80,7 +91,7 @@ export function AppSidebar({ role }: { role: string }) {
                           isActive ? "text-orange-600" : "text-slate-400 group-hover:text-slate-900"
                         )} />
                         <span className="font-bold text-[15px]">{item.title}</span>
-                        
+
                         {isActive && (
                           <div className="absolute left-0 w-1.5 h-8 bg-orange-600 rounded-r-full shadow-[2px_0_8px_rgba(234,88,12,0.4)]" />
                         )}
@@ -97,16 +108,16 @@ export function AppSidebar({ role }: { role: string }) {
       {/* Cyberpunk Status Footer */}
       <div className="mt-auto p-4 border-t border-slate-50">
         <div className="bg-slate-950 rounded-[2rem] p-5 relative overflow-hidden group">
-            <div className="absolute -right-4 -top-4 h-20 w-20 bg-orange-500/10 rounded-full blur-3xl" />
-            <div className="relative z-10 flex items-center justify-between">
-                <div className="flex flex-col">
-                    <span className="text-[9px] font-black text-orange-500 uppercase tracking-widest">Network</span>
-                    <span className="text-xs font-bold text-white mt-0.5">Render: Online</span>
-                </div>
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/5 border border-white/10 text-green-400">
-                   <div className="h-2 w-2 rounded-full bg-green-500 shadow-[0_0_10px_#22c55e]" />
-                </div>
+          <div className="absolute -right-4 -top-4 h-20 w-20 bg-orange-500/10 rounded-full blur-3xl" />
+          <div className="relative z-10 flex items-center justify-between">
+            <div className="flex flex-col">
+              <span className="text-[9px] font-black text-orange-500 uppercase tracking-widest">Network</span>
+              <span className="text-xs font-bold text-white mt-0.5">Render: Online</span>
             </div>
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/5 border border-white/10 text-green-400">
+              <div className="h-2 w-2 rounded-full bg-green-500 shadow-[0_0_10px_#22c55e]" />
+            </div>
+          </div>
         </div>
       </div>
     </Sidebar>
