@@ -36,7 +36,7 @@ export function AppSidebar({ role }: { role: string }) {
 
     CUSTOMER: [
 
-  { title: "My Cart", url: "/dashboard",  icon: ShoppingCart  },
+  { title: "My Cart", url: "/dashboard/my-cart",  icon: ShoppingCart  },
 
   { title: "Order History", url: "/dashboard/my-orders", icon: Package 
 

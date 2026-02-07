@@ -132,3 +132,43 @@ export const trackOrderAction = async (orderId: string) => {
     return null;
   }
 };
+
+
+
+// Place a new order
+export const createOrderAction = async (payload: { 
+  deliveryAddress: string; 
+  items: { mealId: string; quantity: number }[] 
+}) => {
+  try {
+    const cookieStore = await cookies();
+    const myAuthCookie = cookieStore.get("auth_session")?.value;
+    const cookieString = `__Secure-better-auth.session_token=${myAuthCookie}`;
+
+    const res = await fetch(`https://foodhub-backend-a4-2.onrender.com/order/create`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Cookie": cookieString,
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const result = await res.json();
+
+    if (res.ok && result.success) {
+    
+      revalidatePath("/dashboard/my-orders");
+      revalidatePath("/provider-dashboard/orders");
+      return { success: true, message: "Order placed successfully", data: result.data };
+    }
+
+    return { 
+      success: false, 
+      message: result.message || "Failed to finalize order" 
+    };
+  } catch (err) {
+    console.error("CREATE_ORDER_ERROR:", err);
+    return { success: false, message: "Network connection failed" };
+  }
+};
