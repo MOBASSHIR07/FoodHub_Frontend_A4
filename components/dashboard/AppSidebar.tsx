@@ -24,25 +24,26 @@ export function AppSidebar({ role }: { role: string }) {
       },
       {
         title: "Menu Management",
-        url: "/provider-dashboard/menu-management", 
+        url: "/provider-dashboard/menu-management",
         icon: ClipboardList
       },
       {
         title: "Live Orders",
-        url: "/provider-dashboard/orders", 
+        url: "/provider-dashboard/orders",
         icon: Package
       },
     ],
 
     CUSTOMER: [
 
-  { title: "My Cart", url: "/dashboard/my-cart",  icon: ShoppingCart  },
+      { title: "My Cart", url: "/dashboard/my-cart", icon: ShoppingCart },
 
-  { title: "Order History", url: "/dashboard/my-orders", icon: Package 
+      {
+        title: "Order History", url: "/dashboard/my-orders", icon: Package
 
-  },
+      },
 
-]
+    ]
   };
 
 
@@ -57,7 +58,14 @@ export function AppSidebar({ role }: { role: string }) {
             <Zap className="h-5 w-5 text-white fill-white animate-pulse" />
           </div>
           <div className="flex flex-col">
-            <span className="font-black tracking-tighter text-slate-900 text-xl leading-none">FOODHUB</span>
+            <Link
+              href="/"
+              className="flex items-center gap-2 transition-all duration-300 hover:scale-105 active:scale-95 group"
+            >
+              <span className="font-black tracking-tighter text-slate-900 text-xl leading-none group-hover:text-orange-600 transition-colors">
+                FOODHUB
+              </span>
+            </Link>
             <div className="flex items-center gap-1.5 mt-1">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
