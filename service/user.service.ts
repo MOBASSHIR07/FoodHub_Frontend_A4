@@ -30,6 +30,7 @@ export const userService = {
 login: async (values: LoginInput) => {
   const res = await fetch(`${env.BACKEND_URL}/api/auth/sign-in/email`, {
     method: "POST",
+     credentials: "include",
     headers: { 
       "Content-Type": "application/json",
       "origin": env.NEXT_PUBLIC_SITE_URL || "http://localhost:5000"

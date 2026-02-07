@@ -25,12 +25,11 @@ export default async function DashboardLayout({
 
   return (
     <SidebarProvider>
-      {/* Your existing Sidebar */}
+    
       <AppSidebar role={role} /> 
       
       <SidebarInset className="bg-slate-50/50">
-        {/* 📱 MODERN MOBILE HEADER (Option 1) */}
-        {/* Hidden on Desktop (md:hidden) */}
+     
         <header className="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-slate-100 bg-white/80 px-6 backdrop-blur-xl md:hidden">
           <div className="flex items-center gap-3">
             <SidebarTrigger className="text-slate-600 hover:bg-orange-50 hover:text-orange-600 transition-colors" />

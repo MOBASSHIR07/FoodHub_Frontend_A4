@@ -3,5 +3,8 @@ import { env } from "@/env"
 
 export const authClient = createAuthClient({
     baseURL: "https://foodhub-backend-a4-2.onrender.com",
+     fetchOptions: {
+        credentials: "include",
+    },
    
 })

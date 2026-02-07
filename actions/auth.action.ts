@@ -51,3 +51,27 @@ export const signInUserAction = async (values: LoginInput) => {
     return { success: false, message: "Something went wrong during login" };
   }
 }
+
+export const getServerSessionAction = async () => {
+  try {
+    const session = await userService.getSession();
+    if (!session) return null;
+    return session;
+  } catch (error) {
+    return null;
+  }
+};
+
+
+
+
+export const logoutUserAction = async () => {
+  const cookieStore = await cookies();
+  
+
+  cookieStore.delete("__Secure-better-auth.session_token");
+  
+  cookieStore.delete("auth_session");
+  
+  return { success: true };
+};
