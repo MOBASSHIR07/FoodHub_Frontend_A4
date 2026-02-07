@@ -1,7 +1,8 @@
 import { mealService } from "@/service/meal.service";
 import { Meal } from "@/app/types/provider"; 
 import Image from "next/image";
-import {  Star, MapPin } from "lucide-react";
+import { Star, MapPin } from "lucide-react";
+import AddToCartButton from "@/components/meals/AddToCartButton";
 
 export default async function FeaturedMeals() {
   const { data: meals, error } = await mealService.getAllMeals();
@@ -33,9 +34,12 @@ export default async function FeaturedMeals() {
                 <span>{meal.provider?.businessName}</span>
               </div>
               <p className="text-orange-600 font-black">৳{meal.price}</p>
-              <button className="w-full bg-gray-900 text-white py-3 rounded-2xl font-bold mt-2 hover:bg-orange-600 transition-all">
-                Add to Cart
-              </button>
+              
+              {/* 🛒 Replaced the static button with our AddToCartButton */}
+              <AddToCartButton 
+                meal={meal} 
+                className="w-full bg-gray-900 text-white py-3 rounded-2xl font-bold mt-2 hover:bg-orange-600 transition-all flex items-center justify-center gap-2 active:scale-95"
+              />
             </div>
           </div>
         );
