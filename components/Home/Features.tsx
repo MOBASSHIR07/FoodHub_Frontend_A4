@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { ShieldCheck, Utensils, Zap } from "lucide-react";
-import featuresBg from "@/assets/image/choose_us.jpg";
+import featuresBg from "@/assets/Image/choose_us.jpg";
 
 const features = [
   {
