@@ -135,12 +135,12 @@ export default function MyShopOrders() {
 
   const getStatusStyles = (status: string) => {
     switch (status) {
-      case "PENDING": return "bg-yellow-50 text-yellow-700 border-yellow-200";
-      case "CONFIRMED": return "bg-blue-50 text-blue-700 border-blue-200";
-      case "COOKING": return "bg-orange-50 text-orange-700 border-orange-200";
-      case "DELIVERED": return "bg-green-50 text-green-700 border-green-200";
-      case "CANCELLED": return "bg-red-50 text-red-700 border-red-200";
-      default: return "bg-gray-50 text-gray-700 border-gray-200";
+      case "PENDING": return "bg-yellow-500/10 text-yellow-500 border-yellow-500/20";
+      case "CONFIRMED": return "bg-blue-500/10 text-blue-500 border-blue-500/20";
+      case "COOKING": return "bg-orange-500/10 text-orange-500 border-orange-500/20";
+      case "DELIVERED": return "bg-emerald-500/10 text-emerald-500 border-emerald-500/20";
+      case "CANCELLED": return "bg-rose-500/10 text-rose-500 border-rose-500/20";
+      default: return "bg-muted text-muted-foreground border-border";
     }
   };
 
@@ -178,19 +178,19 @@ export default function MyShopOrders() {
   if (!mounted) return null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-4 md:p-6 lg:p-8">
+    <div className="min-h-screen bg-background p-4 md:p-6 lg:p-8">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
-            <div className="flex items-center gap-2 text-sm text-gray-500 mb-1">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
               <LayoutDashboard className="w-4 h-4" />
               <span className="font-medium">Kitchen Dashboard</span>
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
+            <h1 className="text-3xl md:text-4xl font-bold text-foreground">
               Order Management
             </h1>
-            <p className="text-gray-500 mt-2">Monitor and manage all incoming orders</p>
+            <p className="text-muted-foreground mt-2">Monitor and manage all incoming orders</p>
           </div>
           
           <div className="flex items-center gap-3">
@@ -205,21 +205,15 @@ export default function MyShopOrders() {
           </div>
         </div>
 
-       
-
-        
-
-       
-
         {/* Search and Filter */}
-        <Card className="border-0 shadow-md">
+        <Card className="border-border shadow-md bg-card">
           <CardContent className="p-6">
             <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
               <div className="relative w-full md:w-auto md:flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
                 <Input
                   placeholder="Search orders by ID, customer, or address..."
-                  className="pl-10 w-full"
+                  className="pl-10 w-full bg-background border-border placeholder:text-muted-foreground/50"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -227,17 +221,17 @@ export default function MyShopOrders() {
               
               <div className="flex items-center gap-2">
                 <Tabs defaultValue="ALL" className="w-full" onValueChange={setActiveFilter}>
-                  <TabsList className="bg-gray-100 p-1">
-                    <TabsTrigger value="ALL" className="data-[state=active]:bg-white">
+                  <TabsList className="bg-muted p-1">
+                    <TabsTrigger value="ALL" className="data-[state=active]:bg-card text-xs">
                       All Orders
                     </TabsTrigger>
-                    <TabsTrigger value="PENDING" className="data-[state=active]:bg-white">
+                    <TabsTrigger value="PENDING" className="data-[state=active]:bg-card text-xs">
                       Pending
                     </TabsTrigger>
-                    <TabsTrigger value="COOKING" className="data-[state=active]:bg-white">
+                    <TabsTrigger value="COOKING" className="data-[state=active]:bg-card text-xs">
                       Cooking
                     </TabsTrigger>
-                    <TabsTrigger value="DELIVERED" className="data-[state=active]:bg-white">
+                    <TabsTrigger value="DELIVERED" className="data-[state=active]:bg-card text-xs">
                       Delivered
                     </TabsTrigger>
                   </TabsList>
@@ -248,24 +242,24 @@ export default function MyShopOrders() {
         </Card>
 
         {/* Orders Table */}
-        <Card className="border-0 shadow-lg overflow-hidden">
-          <CardHeader className="bg-gradient-to-r from-gray-900 to-gray-800">
-            <CardTitle className="text-white flex items-center gap-2">
-              <Package className="w-5 h-5" />
+        <Card className="border border-border shadow-lg overflow-hidden bg-card">
+          <CardHeader className="bg-muted animate-in slide-in-from-top-2 duration-500">
+            <CardTitle className="text-foreground flex items-center gap-2">
+              <Package className="w-5 h-5 text-orange-500" />
               Recent Orders
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             <div className="overflow-x-auto">
               <Table>
-                <TableHeader className="bg-gray-50">
-                  <TableRow>
-                    <TableHead className="font-semibold text-gray-600">Order Details</TableHead>
-                    <TableHead className="font-semibold text-gray-600">Customer</TableHead>
-                    <TableHead className="font-semibold text-gray-600">Items</TableHead>
-                    <TableHead className="font-semibold text-gray-600">Amount</TableHead>
-                    <TableHead className="font-semibold text-gray-600">Status</TableHead>
-                    <TableHead className="font-semibold text-gray-600 text-right">Actions</TableHead>
+                <TableHeader className="bg-muted/50">
+                  <TableRow className="hover:bg-transparent border-border">
+                    <TableHead className="font-bold text-foreground/70 uppercase text-[10px] tracking-widest">Order Details</TableHead>
+                    <TableHead className="font-bold text-foreground/70 uppercase text-[10px] tracking-widest">Customer</TableHead>
+                    <TableHead className="font-bold text-foreground/70 uppercase text-[10px] tracking-widest">Items</TableHead>
+                    <TableHead className="font-bold text-foreground/70 uppercase text-[10px] tracking-widest">Amount</TableHead>
+                    <TableHead className="font-bold text-foreground/70 uppercase text-[10px] tracking-widest">Status</TableHead>
+                    <TableHead className="font-bold text-foreground/70 uppercase text-[10px] tracking-widest text-right">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -274,7 +268,7 @@ export default function MyShopOrders() {
                       <TableCell colSpan={6} className="h-64 text-center">
                         <div className="flex flex-col items-center justify-center">
                           <Loader2 className="animate-spin w-8 h-8 text-orange-500 mb-4" />
-                          <p className="text-gray-500">Loading orders...</p>
+                          <p className="text-muted-foreground">Loading orders...</p>
                         </div>
                       </TableCell>
                     </TableRow>
@@ -292,23 +286,23 @@ export default function MyShopOrders() {
                     </TableRow>
                   ) : (
                     filteredOrders.map((order) => (
-                      <TableRow key={order.id} className="hover:bg-gray-50/50 transition-colors">
+                      <TableRow key={order.id} className="hover:bg-muted/30 transition-colors border-border">
                         <TableCell>
                           <div className="space-y-1">
                             <div className="flex items-center gap-2">
-                              <ReceiptText className="w-4 h-4 text-gray-400" />
-                              <span className="font-semibold text-gray-900">
+                              <ReceiptText className="w-4 h-4 text-muted-foreground/50" />
+                              <span className="font-bold text-foreground">
                                 #{order.orderNumber}
                               </span>
                             </div>
-                            <div className="flex items-center gap-2 text-sm text-gray-500">
+                            <div className="flex items-center gap-2 text-sm text-muted-foreground">
                               <Clock className="w-3 h-3" />
                               {new Date(order.createdAt).toLocaleTimeString([], { 
                                 hour: '2-digit', 
                                 minute: '2-digit' 
                               })}
                             </div>
-                            <div className="flex items-center gap-2 text-xs text-gray-400">
+                            <div className="flex items-center gap-2 text-xs text-muted-foreground/60 italic">
                               <CreditCard className="w-3 h-3" />
                               {order.paymentStatus}
                             </div>
@@ -318,12 +312,12 @@ export default function MyShopOrders() {
                         <TableCell>
                           <div className="space-y-1">
                             <div className="flex items-center gap-2">
-                              <User className="w-4 h-4 text-gray-400" />
-                              <span className="font-medium text-gray-900">
+                              <User className="w-4 h-4 text-muted-foreground/50" />
+                              <span className="font-bold text-foreground">
                                 {order.customer?.name || "Guest"}
                               </span>
                             </div>
-                            <div className="flex items-center gap-2 text-sm text-gray-500 truncate max-w-[200px]">
+                            <div className="flex items-center gap-2 text-sm text-muted-foreground truncate max-w-[200px]">
                               <MapPin className="w-3 h-3 flex-shrink-0" />
                               <span className="truncate">{order.deliveryAddress}</span>
                             </div>
@@ -336,7 +330,7 @@ export default function MyShopOrders() {
                               <Badge 
                                 key={idx} 
                                 variant="secondary" 
-                                className="bg-gray-100 text-gray-700 text-xs font-medium px-2 py-1 rounded-md"
+                                className="bg-muted text-muted-foreground text-[10px] font-black uppercase px-2 py-1 rounded-md border border-border"
                               >
                                 {item.quantity}x {item.meal?.name}
                               </Badge>
@@ -353,7 +347,7 @@ export default function MyShopOrders() {
                         </TableCell>
 
                         <TableCell>
-                          <div className="font-bold text-gray-900">
+                          <div className="font-bold text-foreground italic">
                             ${order.totalAmount.toFixed(2)}
                           </div>
                         </TableCell>
@@ -374,10 +368,10 @@ export default function MyShopOrders() {
                               onValueChange={(val: string) => handleStatusChange(order.id, val)}
                               defaultValue={order.status}
                             >
-                              <SelectTrigger className="w-[140px] h-9 rounded-lg border-gray-200">
+                              <SelectTrigger className="w-[140px] h-9 rounded-lg border-border bg-background">
                                 <SelectValue placeholder="Update" />
                               </SelectTrigger>
-                              <SelectContent className="rounded-lg border-gray-200">
+                              <SelectContent className="rounded-lg border-border bg-card">
                                 {statusOptions.map((opt) => (
                                   <SelectItem 
                                     key={opt} 
@@ -404,24 +398,24 @@ export default function MyShopOrders() {
         </Card>
 
         {/* Summary Footer */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-black uppercase tracking-widest text-muted-foreground border-t border-border pt-6">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+              <div className="w-3 h-3 rounded-full bg-yellow-500 shadow-sm shadow-yellow-500/20"></div>
               <span>Pending ({stats.pending})</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-orange-500"></div>
+              <div className="w-3 h-3 rounded-full bg-orange-500 shadow-sm shadow-orange-500/20"></div>
               <span>Cooking ({stats.cooking})</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-green-500"></div>
+              <div className="w-3 h-3 rounded-full bg-green-500 shadow-sm shadow-green-500/20"></div>
               <span>Delivered ({orders.filter(o => o.status === "DELIVERED").length})</span>
             </div>
           </div>
           <div className="text-right">
-            <p className="font-semibold text-gray-700">
-              Total Revenue: <span className="text-green-600">${stats.totalRevenue.toFixed(2)}</span>
+            <p className="font-black text-muted-foreground italic">
+              Total Revenue: <span className="text-emerald-500 text-lg ml-2 not-italic">${stats.totalRevenue.toFixed(2)}</span>
             </p>
           </div>
         </div>
