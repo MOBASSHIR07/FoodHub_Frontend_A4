@@ -44,16 +44,16 @@ export default async function AllMealsPage({
   }
 
   return (
-    <main className="min-h-screen bg-[#FAFAFA] pb-20">
+    <main className="min-h-screen bg-background pb-20">
       {/* Header & Filter Section */}
-      <div className="bg-white border-b border-gray-100 py-10 mb-8">
+      <div className="bg-card border-b border-border py-10 mb-8">
         <div className="container mx-auto px-6">
-          <h1 className="text-3xl font-black mb-6 text-gray-900 leading-none">
+          <h1 className="text-3xl font-black mb-6 text-foreground leading-none">
             Explore <span className="text-orange-600 italic">All Meals.</span>
           </h1>
           
           <div className="flex flex-wrap items-center gap-3">
-            <div className="bg-gray-900 text-white px-4 py-2 rounded-full text-[10px] font-black flex items-center gap-2 tracking-widest uppercase">
+            <div className="bg-foreground text-background px-4 py-2 rounded-full text-[10px] font-black flex items-center gap-2 tracking-widest uppercase">
               <Filter className="h-3.5 w-3.5" /> FILTERS
             </div>
 
@@ -65,14 +65,14 @@ export default async function AllMealsPage({
                 className={`px-5 py-2 rounded-full text-xs font-bold border transition-all ${
                   cuisine === item 
                   ? "bg-orange-600 border-orange-600 text-white" 
-                  : "bg-white border-gray-200 text-gray-600 hover:border-orange-600 shadow-sm"
+                  : "bg-background border-border text-muted-foreground hover:border-orange-600 shadow-sm"
                 }`}
               >
                 {item}
               </Link>
             ))}
 
-            <div className="h-4 w-px bg-gray-200 mx-1" />
+            <div className="h-4 w-px bg-border mx-1" />
 
             {/* Dietary Filters */}
             {["Halal", "Vegan", "High-Protein"].map((item) => (
@@ -82,7 +82,7 @@ export default async function AllMealsPage({
                 className={`px-5 py-2 rounded-full text-xs font-bold border transition-all ${
                   dietaryPreferences === item 
                   ? "bg-green-600 border-green-600 text-white" 
-                  : "bg-white border-gray-200 text-gray-600 hover:border-green-600 shadow-sm"
+                  : "bg-background border-border text-muted-foreground hover:border-green-600 shadow-sm"
                 }`}
               >
                 {item}
@@ -101,9 +101,9 @@ export default async function AllMealsPage({
       {/* Meals Grid & Pagination Section */}
       <div className="container mx-auto px-6">
         {!meals || meals.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-32 bg-white rounded-[3rem] border border-dashed border-gray-200">
-            <UtensilsCrossed className="h-16 w-16 mb-4 text-gray-200" />
-            <p className="text-xl font-bold text-gray-400 uppercase tracking-tighter text-center">No culinary assets found <br/> for this selection.</p>
+          <div className="flex flex-col items-center justify-center py-32 bg-background rounded-[3rem] border border-dashed border-border">
+            <UtensilsCrossed className="h-16 w-16 mb-4 text-muted" />
+            <p className="text-xl font-bold text-muted-foreground uppercase tracking-tighter text-center">No culinary assets found <br/> for this selection.</p>
           </div>
         ) : (
           <>
@@ -116,7 +116,7 @@ export default async function AllMealsPage({
                 return (
                   <div 
                     key={meal.id} 
-                    className="group bg-white rounded-[2.5rem] p-3 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500"
+                    className="group bg-card rounded-[2.5rem] p-3 border border-border shadow-sm hover:shadow-xl transition-all duration-500"
                   >
                     <Link href={`/meals/${meal.id}`}>
                       <div className="relative h-56 w-full rounded-[2rem] overflow-hidden">
@@ -138,22 +138,22 @@ export default async function AllMealsPage({
 
                     <div className="p-4 space-y-3">
                       <div className="flex justify-between items-center">
-                        <span className="text-[10px] font-black text-orange-600 uppercase bg-orange-50 px-2 py-0.5 rounded tracking-widest leading-none">
+                        <span className="text-[10px] font-black text-orange-600 uppercase bg-orange-500/10 px-2 py-0.5 rounded tracking-widest leading-none">
                           {meal.category?.name}
                         </span>
-                        <span className="text-lg font-black text-gray-900 tracking-tighter italic leading-none">৳{meal.price}</span>
+                        <span className="text-lg font-black text-foreground tracking-tighter italic leading-none">৳{meal.price}</span>
                       </div>
-                      <h3 className="text-lg font-bold text-gray-900 truncate uppercase tracking-tighter">
+                      <h3 className="text-lg font-bold text-foreground truncate uppercase tracking-tighter">
                         {meal.name}
                       </h3>
-                      <div className="flex items-center gap-1 text-gray-400 text-[11px] font-bold truncate">
+                      <div className="flex items-center gap-1 text-muted-foreground text-[11px] font-bold truncate">
                         <MapPin className="h-3 w-3 text-orange-500" /> {meal.provider?.businessName}
                       </div>
 
                       {/* 🛒 Reusable Add to Cart Button */}
                       <AddToCartButton 
                         meal={meal}
-                        className="w-full bg-gray-900 text-white py-4 rounded-2xl font-black text-xs uppercase tracking-[0.2em] flex items-center justify-center gap-2 hover:bg-orange-600 transition-all active:scale-95 shadow-lg shadow-gray-100"
+                        className="w-full bg-foreground text-background py-4 rounded-2xl font-black text-xs uppercase tracking-[0.2em] flex items-center justify-center gap-2 hover:bg-orange-600 hover:text-white transition-all active:scale-95 shadow-lg shadow-black/5"
                       />
                     </div>
                   </div>
@@ -168,7 +168,7 @@ export default async function AllMealsPage({
                 {currentPage > 1 && (
                   <Link 
                     href={`/meals?page=${currentPage - 1}${cuisine ? `&cuisine=${cuisine}` : ''}${dietaryPreferences ? `&dietaryPreferences=${dietaryPreferences}` : ''}`}
-                    className="p-4 rounded-2xl bg-white border border-gray-100 hover:bg-orange-50 transition-colors shadow-sm"
+                    className="p-4 rounded-2xl bg-background border border-border hover:bg-muted transition-colors shadow-sm"
                   >
                     <ChevronLeft className="h-5 w-5" />
                   </Link>
@@ -182,8 +182,8 @@ export default async function AllMealsPage({
                       href={`/meals?page=${pageNum}${cuisine ? `&cuisine=${cuisine}` : ''}${dietaryPreferences ? `&dietaryPreferences=${dietaryPreferences}` : ''}`}
                       className={`h-12 w-12 flex items-center justify-center rounded-2xl font-black text-sm transition-all shadow-sm ${
                         currentPage === pageNum 
-                        ? "bg-orange-600 text-white scale-110 shadow-orange-100" 
-                        : "bg-white text-gray-600 border border-gray-100 hover:bg-orange-50"
+                        ? "bg-orange-600 text-white scale-110 shadow-orange-500/20" 
+                        : "bg-background text-muted-foreground border border-border hover:bg-muted"
                       }`}
                     >
                       {pageNum}
@@ -195,7 +195,7 @@ export default async function AllMealsPage({
                 {currentPage < meta.totalPage && (
                   <Link 
                     href={`/meals?page=${currentPage + 1}${cuisine ? `&cuisine=${cuisine}` : ''}${dietaryPreferences ? `&dietaryPreferences=${dietaryPreferences}` : ''}`}
-                    className="p-4 rounded-2xl bg-white border border-gray-100 hover:bg-orange-50 transition-colors shadow-sm"
+                    className="p-4 rounded-2xl bg-background border border-border hover:bg-muted transition-colors shadow-sm text-foreground"
                   >
                     <ChevronRight className="h-5 w-5" />
                   </Link>

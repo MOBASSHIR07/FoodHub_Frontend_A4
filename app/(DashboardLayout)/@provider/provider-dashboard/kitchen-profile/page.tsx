@@ -83,10 +83,10 @@ const Kitchen_Profile = () => {
   return (
     <div className="p-6 md:p-12 max-w-4xl mx-auto">
       <div className="mb-10">
-        <h1 className="text-4xl font-black text-slate-900 tracking-tighter uppercase italic">
+        <h1 className="text-4xl font-black text-foreground tracking-tighter uppercase italic">
           Kitchen <span className="text-orange-500 text-outline">Studio.</span>
         </h1>
-        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.4em] mt-2">
+        <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.4em] mt-2">
           Identity & Visual Manifest
         </p>
       </div>
@@ -94,12 +94,12 @@ const Kitchen_Profile = () => {
       <form onSubmit={handleSubmit} className="space-y-8">
         {/* 🖼️ Elite Image Upload Section */}
         <div className="space-y-4">
-          <label className="text-[10px] font-black uppercase text-slate-400 ml-2 tracking-widest flex items-center gap-2">
+          <label className="text-[10px] font-black uppercase text-muted-foreground ml-2 tracking-widest flex items-center gap-2">
             <ImageIcon size={14} /> Brand Banner
           </label>
           
           {!previewUrl ? (
-            <div className="relative h-64 w-full rounded-[2.5rem] bg-slate-50 border-4 border-dashed border-slate-100 flex items-center justify-center group hover:bg-slate-100 transition-all cursor-pointer">
+            <div className="relative h-64 w-full rounded-[2.5rem] bg-muted/30 border-4 border-dashed border-border flex items-center justify-center group hover:bg-muted/50 transition-all cursor-pointer">
               <input 
                 type="file" 
                 className="absolute inset-0 opacity-0 cursor-pointer z-10" 
@@ -109,17 +109,17 @@ const Kitchen_Profile = () => {
                 }}
               />
               <div className="text-center group-hover:scale-110 transition-transform">
-                <Plus className="mx-auto text-slate-300 group-hover:text-orange-500 mb-2" />
-                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Upload Banner</p>
+                <Plus className="mx-auto text-muted group-hover:text-orange-500 mb-2" />
+                <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">Upload Banner</p>
               </div>
             </div>
           ) : (
-            <div className="relative h-64 w-full rounded-[2.5rem] overflow-hidden shadow-xl group">
+            <div className="relative h-64 w-full rounded-[2.5rem] overflow-hidden shadow-xl group border border-border">
               <Image src={previewUrl} alt="Preview" fill className="object-cover" />
               <button 
                 type="button"
                 onClick={() => { setImageFile(null); setPreviewUrl(null); }}
-                className="absolute top-4 right-4 h-10 w-10 bg-white/90 backdrop-blur-md rounded-xl flex items-center justify-center text-red-500 shadow-xl"
+                className="absolute top-4 right-4 h-10 w-10 bg-background/90 backdrop-blur-md rounded-xl flex items-center justify-center text-red-500 shadow-xl border border-border"
               >
                 <X size={18} />
               </button>
@@ -127,33 +127,33 @@ const Kitchen_Profile = () => {
           )}
         </div>
 
-        <div className="bg-white border border-slate-100 rounded-[2.5rem] p-8 space-y-8 shadow-sm">
+        <div className="bg-card border border-border rounded-[2.5rem] p-8 space-y-8 shadow-sm">
           {/* Business Name */}
           <div className="space-y-2">
-            <label className="text-[10px] font-black uppercase text-slate-400 ml-2 tracking-widest flex items-center gap-2">
+            <label className="text-[10px] font-black uppercase text-muted-foreground ml-2 tracking-widest flex items-center gap-2">
               <Store size={14} /> Kitchen Name
             </label>
-            <input name="businessName" placeholder="e.g. Spice Route" className="w-full h-12 bg-slate-50 border border-slate-100 rounded-xl px-4 text-sm font-bold text-slate-700 outline-none focus:border-orange-500 transition-all" />
+            <input name="businessName" placeholder="e.g. Spice Route" className="w-full h-12 bg-background border border-border rounded-xl px-4 text-sm font-bold text-foreground outline-none focus:border-orange-500 transition-all placeholder:text-muted" />
           </div>
 
           {/* Address */}
           <div className="space-y-2">
-            <label className="text-[10px] font-black uppercase text-slate-400 ml-2 tracking-widest flex items-center gap-2">
+            <label className="text-[10px] font-black uppercase text-muted-foreground ml-2 tracking-widest flex items-center gap-2">
               <MapPin size={14} /> Location
             </label>
-            <input name="address" placeholder="Area, Dhaka" className="w-full h-12 bg-slate-50 border border-slate-100 rounded-xl px-4 text-sm font-bold text-slate-700 outline-none focus:border-orange-500 transition-all" />
+            <input name="address" placeholder="Area, Dhaka" className="w-full h-12 bg-background border border-border rounded-xl px-4 text-sm font-bold text-foreground outline-none focus:border-orange-500 transition-all placeholder:text-muted" />
           </div>
 
           {/* Description */}
           <div className="space-y-2">
-            <label className="text-[10px] font-black uppercase text-slate-400 ml-2 tracking-widest flex items-center gap-2">
+            <label className="text-[10px] font-black uppercase text-muted-foreground ml-2 tracking-widest flex items-center gap-2">
               <AlignLeft size={14} /> Bio
             </label>
-            <textarea name="description" rows={3} placeholder="Tell your story..." className="w-full bg-slate-50 border border-slate-100 rounded-xl p-4 text-sm font-bold text-slate-700 outline-none focus:border-orange-500 transition-all resize-none" />
+            <textarea name="description" rows={3} placeholder="Tell your story..." className="w-full bg-background border border-border rounded-xl p-4 text-sm font-bold text-foreground outline-none focus:border-orange-500 transition-all resize-none placeholder:text-muted" />
           </div>
         </div>
 
-        <button disabled={loading} className="h-14 px-10 bg-slate-900 text-white rounded-xl font-black uppercase text-[11px] tracking-widest flex items-center gap-3 hover:bg-orange-600 transition-all active:scale-95 disabled:opacity-50">
+        <button disabled={loading} className="h-14 px-10 bg-foreground text-background rounded-xl font-black uppercase text-[11px] tracking-widest flex items-center gap-3 hover:bg-orange-600 hover:text-white transition-all active:scale-95 disabled:opacity-50 shadow-lg">
           {loading ? <Loader2 className="animate-spin" size={18} /> : <><Save size={18} /> Sync Registry</>}
         </button>
       </form>

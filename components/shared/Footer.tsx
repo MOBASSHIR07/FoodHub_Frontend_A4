@@ -12,21 +12,21 @@ const navLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-300">
+    <footer className="bg-slate-950 text-slate-300 dark:bg-black dark:border-t dark:border-slate-800">
       <div className="container mx-auto px-6 pt-16 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           
           {/* --- 1. BRANDING --- */}
           <div className="space-y-6">
             <Link href="/" className="flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-600 shadow-lg shadow-orange-900/50">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-600 shadow-lg shadow-orange-500/20">
                 <UtensilsCrossed className="h-6 w-6 text-white" />
               </div>
               <span className="text-xl font-black tracking-tight text-white">
                 Food<span className="text-orange-600">Hub</span>
               </span>
             </Link>
-            <p className="text-sm leading-relaxed text-gray-400">
+            <p className="text-sm leading-relaxed text-slate-400">
               The most reliable food delivery platform in Bangladesh. 
               Connecting hungry hearts with local culinary masters.
             </p>
@@ -82,14 +82,14 @@ export default function Footer() {
           {/* --- 4. NEWSLETTER --- */}
           <div className="space-y-6">
             <h4 className="text-lg font-bold text-white">Subscribe</h4>
-            <p className="text-sm text-gray-400">Get the latest deals and menu updates.</p>
+            <p className="text-sm text-slate-400">Get the latest deals and menu updates.</p>
             <div className="flex flex-col gap-3">
               <input 
                 type="email" 
                 placeholder="Email Address" 
-                className="w-full bg-gray-800 border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-orange-600 outline-none"
+                className="w-full bg-slate-900/50 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-orange-600 outline-none placeholder:text-slate-600 text-white"
               />
-              <Button className="w-full bg-orange-600 hover:bg-orange-700 font-bold rounded-xl h-11">
+              <Button className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold rounded-xl h-11 transition-all active:scale-95 shadow-lg shadow-orange-500/20">
                 Join Now
               </Button>
             </div>
@@ -98,7 +98,7 @@ export default function Footer() {
         </div>
 
         {/* --- BOTTOM BAR --- */}
-        <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium text-gray-500">
+        <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium text-slate-500">
           <p>© {new Date().getFullYear()} FoodHub. All rights reserved.</p>
           <div className="flex gap-6">
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>

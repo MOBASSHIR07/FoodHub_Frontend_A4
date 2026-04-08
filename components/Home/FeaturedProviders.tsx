@@ -10,11 +10,11 @@ export default async function FeaturedProviders() {
   if (!providers || providers.length === 0) return <div>No kitchens found!</div>;
 
   return (
-    <section className="py-24 bg-white overflow-hidden">
+    <section className="py-24 bg-background overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="mb-12">
           <h2 className="text-sm font-black uppercase tracking-widest text-orange-600">Local Partners</h2>
-          <h3 className="text-4xl lg:text-5xl font-black text-gray-900 mt-2">Browse Kitchens</h3>
+          <h3 className="text-4xl lg:text-5xl font-black text-foreground mt-2">Browse Kitchens</h3>
         </div>
         
         <ProviderCarousel providers={providers} />

@@ -73,7 +73,7 @@ export default function UserManagement({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-orange-50/20 to-slate-50 p-8">
+    <div className="min-h-screen bg-background p-8">
       <div className="max-w-7xl mx-auto">
         
         {/* Header Section */}
@@ -83,52 +83,52 @@ export default function UserManagement({
               <ShieldCheck className="text-white" size={28} />
             </div>
             <div>
-              <h1 className="text-4xl font-black text-slate-900 tracking-tight">User Control Center</h1>
-              <p className="text-slate-500 font-semibold mt-1">Manage permissions, roles & account statuses</p>
+              <h1 className="text-4xl font-black text-foreground tracking-tight">User Control Center</h1>
+              <p className="text-muted-foreground font-semibold mt-1">Manage permissions, roles & account statuses</p>
             </div>
           </div>
         </div>
 
         {/* Stats Cards */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
-          <div className="bg-white border-2 border-slate-200 rounded-2xl p-5 hover:border-orange-500 transition-all duration-300 hover:shadow-xl">
+          <div className="bg-card border-2 border-border rounded-2xl p-5 hover:border-orange-500 transition-all duration-300 hover:shadow-xl">
             <div className="flex items-center justify-between mb-2">
-              <UserIcon className="text-slate-400" size={20} />
-              <span className="text-2xl font-black text-slate-900">{stats.total}</span>
+              <UserIcon className="text-muted-foreground" size={20} />
+              <span className="text-2xl font-black text-foreground">{stats.total}</span>
             </div>
-            <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Total Users</p>
+            <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Total Users</p>
           </div>
 
-          <div className="bg-white border-2 border-green-200 rounded-2xl p-5 hover:border-green-500 transition-all duration-300 hover:shadow-xl">
+          <div className="bg-card border-2 border-green-500/20 rounded-2xl p-5 hover:border-green-500 transition-all duration-300 hover:shadow-xl">
             <div className="flex items-center justify-between mb-2">
               <CheckCircle2 className="text-green-500" size={20} />
               <span className="text-2xl font-black text-green-600">{stats.active}</span>
             </div>
-            <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Active</p>
+            <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Active</p>
           </div>
 
-          <div className="bg-white border-2 border-red-200 rounded-2xl p-5 hover:border-red-500 transition-all duration-300 hover:shadow-xl">
+          <div className="bg-card border-2 border-red-500/20 rounded-2xl p-5 hover:border-red-500 transition-all duration-300 hover:shadow-xl">
             <div className="flex items-center justify-between mb-2">
               <Ban className="text-red-500" size={20} />
               <span className="text-2xl font-black text-red-600">{stats.banned}</span>
             </div>
-            <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Banned</p>
+            <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Banned</p>
           </div>
 
-          <div className="bg-white border-2 border-indigo-200 rounded-2xl p-5 hover:border-indigo-500 transition-all duration-300 hover:shadow-xl">
+          <div className="bg-card border-2 border-indigo-500/20 rounded-2xl p-5 hover:border-indigo-500 transition-all duration-300 hover:shadow-xl">
             <div className="flex items-center justify-between mb-2">
               <Crown className="text-indigo-500" size={20} />
               <span className="text-2xl font-black text-indigo-600">{stats.admins}</span>
             </div>
-            <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Admins</p>
+            <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Admins</p>
           </div>
 
-          <div className="bg-white border-2 border-orange-200 rounded-2xl p-5 hover:border-orange-500 transition-all duration-300 hover:shadow-xl">
+          <div className="bg-card border-2 border-orange-500/20 rounded-2xl p-5 hover:border-orange-500 transition-all duration-300 hover:shadow-xl">
             <div className="flex items-center justify-between mb-2">
               <Store className="text-orange-500" size={20} />
               <span className="text-2xl font-black text-orange-600">{stats.providers}</span>
             </div>
-            <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Providers</p>
+            <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Providers</p>
           </div>
         </div>
 
@@ -140,8 +140,8 @@ export default function UserManagement({
               onClick={() => setFilter(status)}
               className={`px-6 py-2.5 rounded-xl font-black text-xs uppercase tracking-widest transition-all duration-300 ${
                 filter === status
-                  ? "bg-slate-900 text-white shadow-lg"
-                  : "bg-white text-slate-500 border-2 border-slate-200 hover:border-orange-500"
+                  ? "bg-foreground text-background shadow-lg"
+                  : "bg-card text-muted-foreground border-2 border-border hover:border-orange-500"
               }`}
             >
               {status}
@@ -150,11 +150,11 @@ export default function UserManagement({
         </div>
 
         {/* Users Table */}
-        <div className="bg-white border-2 border-slate-200 rounded-3xl overflow-hidden shadow-2xl">
+        <div className="bg-card border-2 border-border rounded-3xl overflow-hidden shadow-2xl">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="bg-slate-900 text-white">
+                <tr className="bg-muted/50 text-foreground">
                   <th className="text-left py-5 px-6 text-xs font-black uppercase tracking-widest">User</th>
                   <th className="text-left py-5 px-6 text-xs font-black uppercase tracking-widest">Contact</th>
                   <th className="text-left py-5 px-6 text-xs font-black uppercase tracking-widest">Role</th>
@@ -163,7 +163,7 @@ export default function UserManagement({
                   <th className="text-center py-5 px-6 text-xs font-black uppercase tracking-widest">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y-2 divide-slate-100">
+              <tbody className="divide-y-2 divide-border">
                 {filteredUsers.map((user) => {
                   const isSelf = user.email === currentUserEmail;
                   const isAdminProfile = user.role === "ADMIN";
@@ -172,8 +172,8 @@ export default function UserManagement({
                   return (
                     <tr 
                       key={user.id} 
-                      className={`hover:bg-orange-50/50 transition-all duration-200 ${
-                        isSelf ? 'bg-orange-50/30' : ''
+                      className={`hover:bg-orange-500/5 transition-all duration-200 ${
+                        isSelf ? 'bg-orange-500/10' : ''
                       }`}
                     >
                       {/* User Info */}
@@ -190,14 +190,14 @@ export default function UserManagement({
                           </div>
                           <div>
                             <div className="flex items-center gap-2">
-                              <p className="font-bold text-slate-900">{user.name}</p>
+                              <p className="font-bold text-foreground">{user.name}</p>
                               {isSelf && (
                                 <span className="bg-orange-500 text-white text-[8px] px-2 py-0.5 rounded-full font-black uppercase">
                                   You
                                 </span>
                               )}
                             </div>
-                            <p className="text-xs text-slate-500 font-medium">ID: {user.id.slice(0, 8)}...</p>
+                            <p className="text-xs text-muted-foreground font-medium">ID: {user.id.slice(0, 8)}...</p>
                           </div>
                         </div>
                       </td>
@@ -206,13 +206,13 @@ export default function UserManagement({
                       <td className="py-5 px-6">
                         <div className="space-y-1">
                           <div className="flex items-center gap-2">
-                            <Mail size={14} className="text-slate-400" />
-                            <p className="text-xs font-semibold text-slate-700">{user.email}</p>
+                            <Mail size={14} className="text-muted-foreground" />
+                            <p className="text-xs font-semibold text-foreground/80">{user.email}</p>
                           </div>
                           {user.phoneNumber && (
                             <div className="flex items-center gap-2">
-                              <Phone size={14} className="text-slate-400" />
-                              <p className="text-xs font-semibold text-slate-700">{user.phoneNumber}</p>
+                              <Phone size={14} className="text-muted-foreground" />
+                              <p className="text-xs font-semibold text-foreground/80">{user.phoneNumber}</p>
                             </div>
                           )}
                         </div>
@@ -222,10 +222,10 @@ export default function UserManagement({
                       <td className="py-5 px-6">
                         <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-black uppercase ${
                           user.role === 'ADMIN' 
-                            ? 'bg-indigo-100 text-indigo-700' 
+                            ? 'bg-indigo-500/10 text-indigo-500' 
                             : user.role === 'PROVIDER'
-                            ? 'bg-orange-100 text-orange-700'
-                            : 'bg-slate-100 text-slate-700'
+                            ? 'bg-orange-500/10 text-orange-500'
+                            : 'bg-muted text-muted-foreground'
                         }`}>
                           {user.role === 'ADMIN' ? <Crown size={14} /> : user.role === 'PROVIDER' ? <Store size={14} /> : <UserIcon size={14} />}
                           {user.role}
@@ -236,15 +236,15 @@ export default function UserManagement({
                       <td className="py-5 px-6">
                         {user.providerProfile ? (
                           <div className="max-w-xs">
-                            <p className="text-xs font-bold text-slate-900 truncate">
+                            <p className="text-xs font-bold text-foreground truncate">
                               {user.providerProfile.businessName}
                             </p>
-                            <p className="text-[10px] text-slate-500 font-medium uppercase tracking-wider">
+                            <p className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider">
                               Provider Account
                             </p>
                           </div>
                         ) : (
-                          <span className="text-xs text-slate-400 font-medium">—</span>
+                          <span className="text-xs text-muted-foreground font-medium">—</span>
                         )}
                       </td>
 
@@ -253,8 +253,8 @@ export default function UserManagement({
                         <div className="flex justify-center">
                           <div className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest ${
                             user.status === 'ACTIVE' 
-                              ? 'bg-green-100 text-green-700 border-2 border-green-200' 
-                              : 'bg-red-100 text-red-700 border-2 border-red-200'
+                              ? 'bg-green-500/10 text-green-500 border-2 border-green-500/20' 
+                              : 'bg-red-500/10 text-red-500 border-2 border-red-500/20'
                           }`}>
                             {user.status === 'ACTIVE' ? <Zap size={12} /> : <Ban size={12} />}
                             {user.status}
@@ -266,7 +266,7 @@ export default function UserManagement({
                       <td className="py-5 px-6 text-center">
                         {isDisabled ? (
                           <div className="flex justify-center">
-                            <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 rounded-xl text-slate-400 text-xs font-bold cursor-not-allowed">
+                            <div className="inline-flex items-center gap-2 px-4 py-2 bg-muted rounded-xl text-muted-foreground text-xs font-bold cursor-not-allowed">
                               <ShieldCheck size={14} />
                               Protected
                             </div>
@@ -302,22 +302,22 @@ export default function UserManagement({
           {/* Empty State */}
           {filteredUsers.length === 0 && (
             <div className="py-20 text-center">
-              <div className="w-20 h-20 bg-slate-100 rounded-3xl flex items-center justify-center mx-auto mb-4">
-                <UserIcon className="text-slate-400" size={32} />
+              <div className="w-20 h-20 bg-muted rounded-3xl flex items-center justify-center mx-auto mb-4">
+                <UserIcon className="text-muted-foreground" size={32} />
               </div>
-              <p className="text-slate-500 font-bold text-lg">No users found</p>
-              <p className="text-slate-400 text-sm font-medium mt-1">Try adjusting your filters</p>
+              <p className="text-foreground font-bold text-lg">No users found</p>
+              <p className="text-muted-foreground text-sm font-medium mt-1">Try adjusting your filters</p>
             </div>
           )}
         </div>
 
         {/* Footer Info */}
-        <div className="mt-8 p-6 bg-gradient-to-r from-orange-50 to-slate-50 border-2 border-orange-200 rounded-2xl">
+        <div className="mt-8 p-6 bg-muted/30 border-2 border-border rounded-2xl">
           <div className="flex items-start gap-3">
             <ShieldAlert className="text-orange-600 mt-0.5" size={20} />
             <div>
-              <p className="text-sm font-bold text-slate-900 mb-1">Security Notice</p>
-              <p className="text-xs text-slate-600 font-medium leading-relaxed">
+              <p className="text-sm font-bold text-foreground mb-1">Security Notice</p>
+              <p className="text-xs text-muted-foreground font-medium leading-relaxed">
                 Admin profiles are automatically protected and cannot be modified. 
                 You cannot change your own account status. All actions are logged for security purposes.
               </p>

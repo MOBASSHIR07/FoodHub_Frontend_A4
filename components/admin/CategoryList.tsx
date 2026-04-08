@@ -57,20 +57,20 @@ export default function CategoryList({ initialCategories = [] }: { initialCatego
 
   return (
     <div className="w-full space-y-6">
-      <div className="hidden md:block bg-white rounded-[3rem] border border-slate-100 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.1)] overflow-hidden">
+      <div className="hidden md:block bg-card rounded-[3rem] border border-border shadow-[0_20px_50px_-20px_rgba(0,0,0,0.1)] overflow-hidden">
         <table className="w-full text-left">
-          <thead className="bg-slate-900 text-white">
+          <thead className="bg-foreground text-background">
             <tr className="text-[10px] font-black uppercase tracking-[0.2em]">
               <th className="p-8 w-32">Visual</th>
               <th className="p-8">Cuisine Name</th>
               <th className="p-8 text-right">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-50">
+          <tbody className="divide-y divide-border">
             {categories.map((cat) => (
-              <tr key={cat.id} className="group hover:bg-orange-50/40 transition-all duration-300">
+              <tr key={cat.id} className="group hover:bg-muted/50 transition-all duration-300">
                 <td className="p-8">
-                  <div className="relative h-16 w-16 rounded-[1.2rem] overflow-hidden shadow-lg border-2 border-white group-hover:rotate-3 transition-transform">
+                  <div className="relative h-16 w-16 rounded-[1.2rem] overflow-hidden shadow-lg border-2 border-background group-hover:rotate-3 transition-transform">
                     <Image 
                       src={cat.image || "/placeholder.jpg"} 
                       alt={cat.name} 
@@ -81,10 +81,10 @@ export default function CategoryList({ initialCategories = [] }: { initialCatego
                   </div>
                 </td>
                 <td className="p-8">
-                  <p className="font-black text-slate-800 text-xl tracking-tighter uppercase italic group-hover:text-orange-600 transition-colors">
+                  <p className="font-black text-foreground text-xl tracking-tighter uppercase italic group-hover:text-orange-600 transition-colors">
                     {cat.name}
                   </p>
-                  <span className="text-[9px] font-bold text-slate-300 tracking-widest uppercase">
+                  <span className="text-[9px] font-bold text-muted-foreground tracking-widest uppercase">
                     Ref ID: {cat.id.slice(-8)}
                   </span>
                 </td>
@@ -92,13 +92,13 @@ export default function CategoryList({ initialCategories = [] }: { initialCatego
                   <div className="flex items-center justify-end gap-3 opacity-80 group-hover:opacity-100 transition-opacity">
                     <Dialog open={openId === cat.id} onOpenChange={(io) => setOpenId(io ? cat.id : null)}>
                       <DialogTrigger asChild>
-                        <button className="h-12 w-12 flex items-center justify-center bg-slate-100 rounded-2xl text-slate-400 hover:bg-slate-900 hover:text-white transition-all">
+                        <button className="h-12 w-12 flex items-center justify-center bg-muted rounded-2xl text-muted-foreground hover:bg-foreground hover:text-background transition-all">
                           <Edit3 size={18} />
                         </button>
                       </DialogTrigger>
-                      <DialogContent className="rounded-[3rem] p-10 border-none shadow-2xl max-w-lg bg-white">
+                      <DialogContent className="rounded-[3rem] p-10 border-border shadow-2xl max-w-lg bg-card text-foreground">
                         <DialogHeader>
-                          <DialogTitle className="text-2xl font-black uppercase tracking-tighter italic text-slate-900">Modify Category</DialogTitle>
+                          <DialogTitle className="text-2xl font-black uppercase tracking-tighter italic text-foreground">Modify Category</DialogTitle>
                         </DialogHeader>
                         <EditCategoryForm category={cat} onClose={() => setOpenId(null)} />
                       </DialogContent>
@@ -121,25 +121,25 @@ export default function CategoryList({ initialCategories = [] }: { initialCatego
       {/* --- MOBILE VIEW --- */}
       <div className="md:hidden space-y-4">
         {categories.map((cat) => (
-          <div key={cat.id} className="bg-white p-6 rounded-[2.5rem] border border-slate-100 flex items-center justify-between shadow-xl shadow-slate-100/30">
+          <div key={cat.id} className="bg-card p-6 rounded-[2.5rem] border border-border flex items-center justify-between shadow-xl shadow-black/5">
             <div className="flex items-center gap-5">
                <div className="relative h-14 w-14 rounded-2xl overflow-hidden shadow-md flex-shrink-0">
                  <Image src={cat.image || ""} alt={cat.name} fill className="object-cover" unoptimized />
                </div>
-               <h3 className="font-black text-slate-800 uppercase text-xs tracking-tight">{cat.name}</h3>
+               <h3 className="font-black text-foreground uppercase text-xs tracking-tight">{cat.name}</h3>
             </div>
             <div className="flex gap-2">
-               <button onClick={() => setOpenId(cat.id)} className="p-3 bg-slate-50 rounded-xl text-slate-400"><Edit3 size={16}/></button>
-               <button onClick={() => handleDelete(cat.id, cat.name)} className="p-3 bg-rose-50 rounded-xl text-rose-400"><Trash2 size={16}/></button>
+               <button onClick={() => setOpenId(cat.id)} className="p-3 bg-muted rounded-xl text-muted-foreground"><Edit3 size={16}/></button>
+               <button onClick={() => handleDelete(cat.id, cat.name)} className="p-3 bg-rose-500/10 rounded-xl text-rose-500"><Trash2 size={16}/></button>
             </div>
           </div>
         ))}
       </div>
 
       {categories.length === 0 && (
-        <div className="flex flex-col items-center justify-center py-32 bg-slate-50/50 rounded-[4rem] border-4 border-dashed border-slate-100">
-           <AlertCircle className="text-slate-200 w-16 h-16 mb-4" />
-           <p className="text-slate-300 font-black uppercase tracking-widest text-xs">No entries in the registry</p>
+        <div className="flex flex-col items-center justify-center py-32 bg-muted/30 rounded-[4rem] border-4 border-dashed border-border">
+           <AlertCircle className="text-muted w-16 h-16 mb-4" />
+           <p className="text-muted-foreground font-black uppercase tracking-widest text-xs">No entries in the registry</p>
         </div>
       )}
     </div>

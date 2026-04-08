@@ -47,25 +47,25 @@ export default function SignInForm() {
         <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-orange-600 text-white shadow-lg">
           <Squirrel className="h-7 w-7" />
         </div>
-        <h1 className="text-3xl font-black tracking-tight text-slate-900">Welcome back</h1>
-        <p className="text-sm font-medium text-slate-500 font-semibold">Sign in to FoodHub</p>
+        <h1 className="text-3xl font-black tracking-tight text-foreground">Welcome back</h1>
+        <p className="text-sm font-medium text-muted-foreground font-semibold">Sign in to FoodHub</p>
       </div>
 
-      <div className="p-8 bg-white border border-slate-100 rounded-3xl shadow-xl shadow-slate-100/50">
+      <div className="p-8 bg-card border border-border rounded-3xl shadow-xl shadow-muted/50">
         {/* Social Buttons */}
         <div className="grid grid-cols-2 gap-3 mb-6">
-          <Button variant="outline" className="rounded-xl h-11 border-slate-200 font-bold" onClick={() => authClient.signIn.social({ provider: 'google' })}>
+          <Button variant="outline" className="rounded-xl h-11 border-border font-bold bg-background text-foreground" onClick={() => authClient.signIn.social({ provider: 'google' })}>
             <Chrome className="h-4 w-4 text-red-500 mr-2" /> Google
           </Button>
-          <Button variant="outline" className="rounded-xl h-11 border-slate-200 font-bold" onClick={() => authClient.signIn.social({ provider: 'github' })}>
+          <Button variant="outline" className="rounded-xl h-11 border-border font-bold bg-background text-foreground" onClick={() => authClient.signIn.social({ provider: 'github' })}>
             <Github className="h-4 w-4 mr-2" /> Github
           </Button>
         </div>
 
         <div className="relative mb-6">
-          <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-slate-100" /></div>
-          <div className="relative flex justify-center text-[10px] uppercase tracking-widest font-bold text-slate-400">
-            <span className="bg-white px-3">Or email</span>
+          <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-border" /></div>
+          <div className="relative flex justify-center text-[10px] uppercase tracking-widest font-bold text-muted-foreground">
+            <span className="bg-card px-3">Or email</span>
           </div>
         </div>
 
@@ -79,14 +79,14 @@ export default function SignInForm() {
           <form.Field name="email" validators={{ onChange: loginSchema.shape.email }}>
             {(field) => (
               <div className="space-y-1">
-                <Label className="text-sm font-bold ml-1 text-slate-700">Email</Label>
+                <Label className="text-sm font-bold ml-1 text-foreground">Email</Label>
                 <div className="relative">
-                  <Mail className="absolute left-4 top-3 h-5 w-5 text-slate-400" />
+                  <Mail className="absolute left-4 top-3 h-5 w-5 text-muted-foreground" />
                   <Input
                     value={field.state.value}
                     onChange={(e) => field.handleChange(e.target.value)}
                     placeholder="name@example.com"
-                    className="pl-12 h-11 rounded-xl border-slate-200 focus:ring-2 focus:ring-orange-500 outline-none"
+                    className="pl-12 h-11 rounded-xl border-border bg-background focus:ring-2 focus:ring-orange-500 outline-none"
                   />
                 </div>
                 {field.state.meta.errors.length > 0 && (
@@ -100,17 +100,17 @@ export default function SignInForm() {
             {(field) => (
               <div className="space-y-1">
                 <div className="flex justify-between px-1">
-                  <Label className="text-sm font-bold text-slate-700">Password</Label>
+                  <Label className="text-sm font-bold text-foreground">Password</Label>
                   <Link href="#" className="text-xs font-bold text-orange-600 hover:underline">Forgot?</Link>
                 </div>
                 <div className="relative">
-                  <Lock className="absolute left-4 top-3 h-5 w-5 text-slate-400" />
+                  <Lock className="absolute left-4 top-3 h-5 w-5 text-muted-foreground" />
                   <Input
                     type="password"
                     value={field.state.value}
                     onChange={(e) => field.handleChange(e.target.value)}
                     placeholder="••••••••"
-                    className="pl-12 h-11 rounded-xl border-slate-200 focus:ring-2 focus:ring-orange-500 outline-none"
+                    className="pl-12 h-11 rounded-xl border-border bg-background focus:ring-2 focus:ring-orange-500 outline-none"
                   />
                 </div>
               </div>
@@ -122,7 +122,7 @@ export default function SignInForm() {
               <Button
                 type="submit"
                 disabled={!canSubmit || isSubmitting}
-                className="w-full h-11 rounded-xl font-black bg-slate-900 hover:bg-orange-600 text-white shadow-lg mt-2"
+                className="w-full h-11 rounded-xl font-black bg-foreground text-background hover:bg-orange-600 hover:text-white shadow-lg mt-2 transition-all"
               >
                 {isSubmitting ? <Loader2 className="animate-spin" /> : "Sign In"}
               </Button>
@@ -131,7 +131,7 @@ export default function SignInForm() {
         </form>
       </div>
 
-      <p className="text-center text-sm font-medium text-slate-500">
+      <p className="text-center text-sm font-medium text-muted-foreground">
         New here? <Link href="/sign-up" className="font-bold text-orange-600 hover:underline">Create account</Link>
       </p>
     </div>

@@ -48,7 +48,7 @@ export default function Features() {
   return (
     <section 
       ref={sectionRef} 
-      className="relative py-24 overflow-hidden bg-gray-50"
+      className="relative py-24 overflow-hidden bg-muted/30"
     >
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-center gap-16">
@@ -68,11 +68,11 @@ export default function Features() {
             </div>
             
             {/* Floating Experience Badge */}
-            <div className={`absolute -bottom-6 -right-6 z-20 bg-white p-6 rounded-3xl shadow-xl transition-all duration-1000 delay-500 ${
+            <div className={`absolute -bottom-6 -right-6 z-20 bg-background p-6 rounded-3xl shadow-xl transition-all duration-1000 delay-500 border border-border ${
               isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"
             }`}>
               <p className="text-4xl font-black text-orange-600">5+</p>
-              <p className="text-sm font-bold text-gray-500 uppercase tracking-tighter">Years of Trust</p>
+              <p className="text-sm font-bold text-muted-foreground uppercase tracking-tighter">Years of Trust</p>
             </div>
           </div>
 
@@ -84,10 +84,10 @@ export default function Features() {
               <h2 className="text-sm font-black uppercase tracking-[0.2em] text-orange-600">
                 Why Choose Us
               </h2>
-              <h3 className="text-4xl lg:text-5xl font-black text-gray-900 leading-tight">
+              <h3 className="text-4xl lg:text-5xl font-black text-foreground leading-tight">
                 More Than Just <br /> Food Delivery.
               </h3>
-              <p className="text-lg text-gray-600">
+              <p className="text-lg text-muted-foreground">
                 We bridge the gap between your hunger and the best local chefs in Bangladesh. 
                 Our platform is built for speed, safety, and taste.
               </p>
@@ -104,16 +104,16 @@ export default function Features() {
                     transform: isVisible ? "translateX(0)" : "translateX(30px)"
                   }}
                 >
-                  <div className="shrink-0 flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-lg transition-all duration-300 group-hover:bg-orange-600 group-hover:scale-110 group-hover:rotate-3">
+                  <div className="shrink-0 flex h-16 w-16 items-center justify-center rounded-2xl bg-background border border-border shadow-lg transition-all duration-300 group-hover:bg-orange-600 group-hover:scale-110 group-hover:rotate-3">
                     <span className="text-orange-600 transition-colors group-hover:text-white">
                         {feature.icon}
                     </span>
                   </div>
                   <div className="space-y-1">
-                    <h4 className="text-xl font-bold text-gray-900 group-hover:text-orange-600 transition-colors">
+                    <h4 className="text-xl font-bold text-foreground group-hover:text-orange-600 transition-colors">
                         {feature.title}
                     </h4>
-                    <p className="text-gray-500 leading-relaxed italic">
+                    <p className="text-muted-foreground leading-relaxed italic">
                         {feature.desc}
                     </p>
                   </div>

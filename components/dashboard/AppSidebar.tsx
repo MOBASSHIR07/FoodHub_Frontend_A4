@@ -50,11 +50,11 @@ export function AppSidebar({ role }: { role: string }) {
   const currentMenu = menuItems[role as keyof typeof menuItems] || [];
 
   return (
-    <Sidebar className="border-r border-slate-100 bg-white/50 backdrop-blur-xl">
-      <SidebarHeader className="p-6 border-b border-slate-100/50">
+    <Sidebar className="border-r border-border bg-background/50 backdrop-blur-xl">
+      <SidebarHeader className="p-6 border-b border-border/50">
         <div className="flex items-center gap-3">
           {/* Neon Icon Box */}
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-500 to-orange-600 shadow-lg shadow-orange-200">
+          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-500 to-orange-600 shadow-lg shadow-orange-500/20">
             <Zap className="h-5 w-5 text-white fill-white animate-pulse" />
           </div>
           <div className="flex flex-col">
@@ -62,7 +62,7 @@ export function AppSidebar({ role }: { role: string }) {
               href="/"
               className="flex items-center gap-2 transition-all duration-300 hover:scale-105 active:scale-95 group"
             >
-              <span className="font-black tracking-tighter text-slate-900 text-xl leading-none group-hover:text-orange-600 transition-colors">
+              <span className="font-black tracking-tighter text-foreground text-xl leading-none group-hover:text-orange-600 transition-colors">
                 FOODHUB
               </span>
             </Link>
@@ -71,7 +71,7 @@ export function AppSidebar({ role }: { role: string }) {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
               </span>
-              <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">{role} MODE</span>
+              <span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">{role} MODE</span>
             </div>
           </div>
         </div>
@@ -79,7 +79,7 @@ export function AppSidebar({ role }: { role: string }) {
 
       <SidebarContent className="px-3 pt-6">
         <SidebarGroup>
-          <SidebarGroupLabel className="px-4 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-4">
+          <SidebarGroupLabel className="px-4 text-[10px] font-black uppercase tracking-[0.3em] text-muted-foreground mb-4">
             Navigation Console
           </SidebarGroupLabel>
           <SidebarGroupContent>
@@ -93,14 +93,14 @@ export function AppSidebar({ role }: { role: string }) {
                       className={cn(
                         "group relative flex items-center gap-3 px-4 py-7 rounded-[1.25rem] transition-all duration-300 border border-transparent",
                         isActive
-                          ? "bg-white border-slate-100 text-orange-600 shadow-xl shadow-slate-100"
-                          : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
+                          ? "bg-background border-border text-orange-600 shadow-xl shadow-orange-500/10"
+                          : "text-muted-foreground hover:bg-muted hover:text-foreground"
                       )}
                     >
                       <Link href={item.url}>
                         <item.icon className={cn(
                           "h-5 w-5 transition-transform duration-500 group-hover:scale-110",
-                          isActive ? "text-orange-600" : "text-slate-400 group-hover:text-slate-900"
+                          isActive ? "text-orange-600" : "text-muted-foreground group-hover:text-foreground"
                         )} />
                         <span className="font-bold text-[15px]">{item.title}</span>
 
@@ -118,8 +118,8 @@ export function AppSidebar({ role }: { role: string }) {
       </SidebarContent>
 
       {/* Cyberpunk Status Footer */}
-      <div className="mt-auto p-4 border-t border-slate-50">
-        <div className="bg-slate-950 rounded-[2rem] p-5 relative overflow-hidden group">
+      <div className="mt-auto p-4 border-t border-border">
+        <div className="bg-slate-950 dark:bg-black rounded-[2rem] p-5 relative overflow-hidden group border border-border">
           <div className="absolute -right-4 -top-4 h-20 w-20 bg-orange-500/10 rounded-full blur-3xl" />
           <div className="relative z-10 flex items-center justify-between">
             <div className="flex flex-col">
