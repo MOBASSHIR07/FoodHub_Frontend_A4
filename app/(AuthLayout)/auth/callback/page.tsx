@@ -18,6 +18,7 @@ export default function AuthCallbackPage() {
       }
 
       const role = session.data.user.role;
+      // for role type we declear in  auth-client.ts file additional role
 
       if (role === "ADMIN") {
         router.push("/admin-dashboard");
