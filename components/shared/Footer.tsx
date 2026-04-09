@@ -4,10 +4,11 @@ import { Button } from "@/components/ui/button";
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "Categories", href: "/categories" },
-  { name: "Meal", href: "/meal" },
-  { name: "Providers", href: "/providers" },
+  { name: "Meals", href: "/meals" },
+  { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
+  { name: "Terms of Service", href: "/terms" },
+  { name: "Privacy Policy", href: "/privacy" },
 ];
 
 export default function Footer() {

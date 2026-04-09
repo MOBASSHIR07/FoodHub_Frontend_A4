@@ -31,9 +31,9 @@ interface UserSession {
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "Meal", href: "/meals" },
+  { name: "Meals", href: "/meals" },
   { name: "Providers", href: "/providers" },
-  { name: "Dashboard", href: "/dashboard" },
+  { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
 ];
 
