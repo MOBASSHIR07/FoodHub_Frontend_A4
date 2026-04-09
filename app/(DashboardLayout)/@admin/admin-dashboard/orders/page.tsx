@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { getAllOrdersAction } from "@/actions/order.action";
 import OrderHistoryTable from "@/components/admin/OrderHistoryTable";
 

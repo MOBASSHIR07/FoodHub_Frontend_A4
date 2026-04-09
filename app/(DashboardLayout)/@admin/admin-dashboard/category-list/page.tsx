@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { getAllCategoriesAction } from "@/actions/category.action";
 import CategoryList from "@/components/admin/CategoryList";
 
