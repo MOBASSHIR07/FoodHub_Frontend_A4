@@ -153,13 +153,14 @@ export default function Navbar() {
         <div className="flex items-center gap-2 md:gap-4">
           <ModeToggle />
           
-          <Button variant="ghost" size="icon" className="hidden sm:flex rounded-full text-muted-foreground">
+          <Button variant="ghost" size="icon" suppressHydrationWarning className="hidden sm:flex rounded-full text-muted-foreground">
             <Search className="h-5 w-5" />
           </Button>
 
           <Button 
             variant="ghost" 
             size="icon" 
+            suppressHydrationWarning
             className="relative rounded-full text-muted-foreground"
             onClick={handleCartClick}
           >

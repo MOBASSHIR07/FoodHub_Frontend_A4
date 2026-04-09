@@ -12,7 +12,7 @@ interface Props {
 
 export default function AddToCartButton({ meal, className, children }: Props) {
   return (
-    <button onClick={() => addToCart(meal)} className={className}>
+    <button suppressHydrationWarning onClick={() => addToCart(meal)} className={className}>
       {children || (
         <>
           <ShoppingBag className="h-4 w-4" /> Add to Cart

@@ -23,6 +23,7 @@ export default function ProviderCarousel({ providers }: { providers: Provider[] 
       <div className="absolute -top-15 right-0 flex gap-3">
         <button 
           onClick={() => scroll("left")} 
+          suppressHydrationWarning
           className="p-2 rounded-full border border-border bg-background hover:bg-orange-600 hover:text-white transition-all shadow-sm active:scale-95 text-foreground"
           aria-label="Scroll Left"
         >
@@ -30,6 +31,7 @@ export default function ProviderCarousel({ providers }: { providers: Provider[] 
         </button>
         <button 
           onClick={() => scroll("right")} 
+          suppressHydrationWarning
           className="p-2 rounded-full border border-border bg-background hover:bg-orange-600 hover:text-white transition-all shadow-sm active:scale-95 text-foreground"
           aria-label="Scroll Right"
         >

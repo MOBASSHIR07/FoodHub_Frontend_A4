@@ -113,22 +113,26 @@ export const deleteCategoryAction = async (id: string) => {
 
 
 export const updateCategoryAction = async (id: string, payload: { name: string, image: string }) => {
-  const cookieStore = await cookies();
-  const myAuthCookie = cookieStore.get("auth_session")?.value;
-  const cookieString = `__Secure-better-auth.session_token=${myAuthCookie}`;
+  try {
+    const cookieStore = await cookies();
+    const myAuthCookie = cookieStore.get("auth_session")?.value;
+    const cookieString = `__Secure-better-auth.session_token=${myAuthCookie}`;
 
-  const res = await fetch(`https://foodhub-backend-a4-2.onrender.com/admin/categories/${id}`, {
-    method: "PATCH",
-    headers: { 
-      "Content-Type": "application/json",
-      "Cookie": cookieString 
-    },
-    body: JSON.stringify(payload),
-  });
+    const res = await fetch(`https://foodhub-backend-a4-2.onrender.com/admin/categories/${id}`, {
+      method: "PATCH",
+      headers: { 
+        "Content-Type": "application/json",
+        "Cookie": cookieString 
+      },
+      body: JSON.stringify(payload),
+    });
 
-  if (res.ok) {
-    revalidatePath("/admin-dashboard/category-list");
-    return { success: true };
+    if (res.ok) {
+      revalidatePath("/admin-dashboard/category-list");
+      return { success: true };
+    }
+    return { success: false };
+  } catch (err) {
+    return { success: false };
   }
-  return { success: false };
 };

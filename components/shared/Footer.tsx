@@ -31,13 +31,13 @@ export default function Footer() {
               Connecting hungry hearts with local culinary masters.
             </p>
             <div className="flex gap-4">
-              <Button size="icon" variant="ghost" className="rounded-full hover:bg-orange-600 hover:text-white transition-all">
+              <Button size="icon" variant="ghost" suppressHydrationWarning className="rounded-full hover:bg-orange-600 hover:text-white transition-all">
                 <Facebook className="h-5 w-5" />
               </Button>
-              <Button size="icon" variant="ghost" className="rounded-full hover:bg-orange-600 hover:text-white transition-all">
+              <Button size="icon" variant="ghost" suppressHydrationWarning className="rounded-full hover:bg-orange-600 hover:text-white transition-all">
                 <Instagram className="h-5 w-5" />
               </Button>
-              <Button size="icon" variant="ghost" className="rounded-full hover:bg-orange-600 hover:text-white transition-all">
+              <Button size="icon" variant="ghost" suppressHydrationWarning className="rounded-full hover:bg-orange-600 hover:text-white transition-all">
                 <Twitter className="h-5 w-5" />
               </Button>
             </div>
@@ -87,9 +87,10 @@ export default function Footer() {
               <input 
                 type="email" 
                 placeholder="Email Address" 
+                suppressHydrationWarning
                 className="w-full bg-slate-900/50 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-orange-600 outline-none placeholder:text-slate-600 text-white"
               />
-              <Button className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold rounded-xl h-11 transition-all active:scale-95 shadow-lg shadow-orange-500/20">
+              <Button suppressHydrationWarning className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold rounded-xl h-11 transition-all active:scale-95 shadow-lg shadow-orange-500/20">
                 Join Now
               </Button>
             </div>
@@ -99,7 +100,7 @@ export default function Footer() {
 
         {/* --- BOTTOM BAR --- */}
         <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium text-slate-500">
-          <p>© {new Date().getFullYear()} FoodHub. All rights reserved.</p>
+          <p suppressHydrationWarning>© {new Date().getFullYear()} FoodHub. All rights reserved.</p>
           <div className="flex gap-6">
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>

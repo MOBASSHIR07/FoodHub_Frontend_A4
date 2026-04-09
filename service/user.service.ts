@@ -46,8 +46,6 @@ export const userService = {
 
       if (setCookieHeader) {
         const cookieStore = await cookies();
-
-
         const isProduction = process.env.NODE_ENV === "production";
         const cookieName = isProduction
           ? "__Secure-better-auth.session_token"
@@ -94,7 +92,7 @@ export const userService = {
 
       const res = await fetch(`${AUTH_URL}/api/auth/get-session`, {
         method: "GET",
-        headers: { 
+        headers: {
           "Cookie": allCookies,
         },
         cache: "no-store",
