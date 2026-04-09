@@ -1,4 +1,8 @@
 Live : https://food-hub-frontend-a4.vercel.app/
+## Admin 
+### Gmail : admin@foodhub.com
+### Password : admin123
+
 
 ## 🥗 FoodHub: Multi-Tenant Culinary Ecosystem
 
