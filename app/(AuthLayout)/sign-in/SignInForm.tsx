@@ -25,20 +25,20 @@ export default function SignInForm() {
       email: "",
       password: "",
     },
-   onSubmit: async ({ value }) => {
-  const toastId = toast.loading("Signing in...");
+    onSubmit: async ({ value }) => {
+      const toastId = toast.loading("Signing in...");
 
-  const result = await signInUserAction(value);
+      const result = await signInUserAction(value);
 
-  if (!result.success) {
-    toast.error(result.message, { id: toastId });
-    return;
-  }
+      if (!result.success) {
+        toast.error(result.message, { id: toastId });
+        return;
+      }
 
-  toast.success("Login successful!", { id: toastId });
-  router.push("/dashboard"); 
-  router.refresh(); 
-},
+      toast.success("Login successful!", { id: toastId });
+      router.push("/dashboard");
+      router.refresh();
+    },
   });
 
   return (
@@ -54,10 +54,22 @@ export default function SignInForm() {
       <div className="p-8 bg-card border border-border rounded-3xl shadow-xl shadow-muted/50">
         {/* Social Buttons */}
         <div className="grid grid-cols-2 gap-3 mb-6">
-          <Button variant="outline" className="rounded-xl h-11 border-border font-bold bg-background text-foreground" onClick={() => authClient.signIn.social({ provider: 'google' })}>
+
+
+          <Button variant="outline" className="rounded-xl h-11 border-border font-bold bg-background text-foreground"
+            onClick={() => authClient.signIn.social({
+              provider: 'google',
+              callbackURL: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:5000'}/auth/callback`
+            })}>
+
+
             <Chrome className="h-4 w-4 text-red-500 mr-2" /> Google
           </Button>
-          <Button variant="outline" className="rounded-xl h-11 border-border font-bold bg-background text-foreground" onClick={() => authClient.signIn.social({ provider: 'github' })}>
+          <Button variant="outline" className="rounded-xl h-11 border-border font-bold bg-background text-foreground" 
+            onClick={() => authClient.signIn.social({ 
+              provider: 'github',
+              callbackURL: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:5000'}/auth/callback`
+            })}>
             <Github className="h-4 w-4 mr-2" /> Github
           </Button>
         </div>
