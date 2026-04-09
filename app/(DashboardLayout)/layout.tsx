@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { userService } from "@/service/user.service";
 import { DashboardLayoutProps, UserRole } from "../types/provider";
 import { redirect } from "next/navigation";
