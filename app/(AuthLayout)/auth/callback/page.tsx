@@ -2,20 +2,21 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { authClient } from "@/lib/auth-client";
 
 export default function AuthCallbackPage() {
   const router = useRouter();
 
   useEffect(() => {
     const handleCallback = async () => {
-      await new Promise(resolve => setTimeout(resolve, 2000));
+    
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get("token");
       
-      const session = await authClient.getSession();
-      console.log("Session response:", session);
-      
-      if (!session?.data?.user) {
-        console.error("No session found after callback");
+      console.log("URL params:", window.location.search);
+      console.log("Token from URL:", token);
+
+      if (!token) {
+        console.error("No token in URL");
         router.push("/sign-in");
         return;
       }
@@ -23,7 +24,7 @@ export default function AuthCallbackPage() {
       const res = await fetch("/api/set-session", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token: session.data.session.token }),
+        body: JSON.stringify({ token }),
       });
 
       if (!res.ok) {
@@ -31,7 +32,11 @@ export default function AuthCallbackPage() {
         return;
       }
 
-      const role = session.data.user.role;
+     
+      const sessionRes = await fetch("/api/auth/get-session");
+      const session = await sessionRes.json();
+      
+      const role = session?.user?.role;
       if (role === "ADMIN") router.push("/admin-dashboard");
       else if (role === "PROVIDER") router.push("/provider-dashboard");
       else router.push("/dashboard");
