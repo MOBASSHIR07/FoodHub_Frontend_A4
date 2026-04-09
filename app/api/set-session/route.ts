@@ -10,8 +10,13 @@ export async function POST(request: NextRequest) {
 
   const cookieStore = await cookies();
   const isProduction = process.env.NODE_ENV === "production";
+  
 
-  cookieStore.set("auth_session", token, {
+  const cookieName = isProduction
+    ? "__Secure-better-auth.session_token"
+    : "better-auth.session_token";
+
+  cookieStore.set(cookieName, token, {
     httpOnly: true,
     secure: isProduction,
     sameSite: "lax",
@@ -21,5 +26,3 @@ export async function POST(request: NextRequest) {
 
   return NextResponse.json({ ok: true });
 }
-
-// no need this anymore because of async rewrites() in next.config.ts
