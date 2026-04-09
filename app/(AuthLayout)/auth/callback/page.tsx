@@ -7,7 +7,7 @@ import { authClient } from "@/lib/auth-client";
 export default function AuthCallbackPage() {
   const router = useRouter();
 
-  useEffect(() => {
+ useEffect(() => {
     const handleCallback = async () => {
       const session = await authClient.getSession();
 
@@ -17,8 +17,19 @@ export default function AuthCallbackPage() {
         return;
       }
 
+ 
+      const res = await fetch("/api/set-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: session.data.session.token }),
+      });
+
+      if (!res.ok) {
+        router.push("/sign-in");
+        return;
+      }
+
       const role = session.data.user.role;
-      // for role type we declear in  auth-client.ts file additional role
 
       if (role === "ADMIN") {
         router.push("/admin-dashboard");
@@ -31,7 +42,6 @@ export default function AuthCallbackPage() {
 
     handleCallback();
   }, [router]);
-
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-primary"></div>
