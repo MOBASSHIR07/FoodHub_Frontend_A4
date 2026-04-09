@@ -59,14 +59,14 @@ export default function SignInForm() {
           <Button variant="outline" className="rounded-xl h-11 border-border font-bold bg-background text-foreground"
             onClick={() => authClient.signIn.social({
               provider: 'google',
-              callbackURL: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:5000'}/auth/callback`
+              callbackURL: `${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/get-session-token?redirect=${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`
             })}>
 
 
             <Chrome className="h-4 w-4 text-red-500 mr-2" /> Google
           </Button>
-          <Button variant="outline" className="rounded-xl h-11 border-border font-bold bg-background text-foreground" 
-            onClick={() => authClient.signIn.social({ 
+          <Button variant="outline" className="rounded-xl h-11 border-border font-bold bg-background text-foreground"
+            onClick={() => authClient.signIn.social({
               provider: 'github',
               callbackURL: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:5000'}/auth/callback`
             })}>

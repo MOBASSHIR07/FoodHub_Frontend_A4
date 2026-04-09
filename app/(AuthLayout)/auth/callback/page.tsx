@@ -8,18 +8,14 @@ export default function AuthCallbackPage() {
 
   useEffect(() => {
     const handleCallback = async () => {
-      await new Promise(resolve => setTimeout(resolve, 1000));
+    
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get("token");
       
-      
-      const tokenRes = await fetch(`${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/get-session-token`, {
-        credentials: 'include',
-      });
-      const { token } = await tokenRes.json();
-      
-      console.log("Token from backend:", token);
+      console.log("Token from URL:", token);
       
       if (!token) {
-        console.error("No token found");
+        console.error("No token in URL");
         router.push("/sign-in");
         return;
       }
@@ -38,6 +34,8 @@ export default function AuthCallbackPage() {
       const sessionRes = await fetch("/api/auth/get-session");
       const session = await sessionRes.json();
       const role = session?.user?.role;
+      
+      console.log("Session:", session);
       
       if (role === "ADMIN") router.push("/admin-dashboard");
       else if (role === "PROVIDER") router.push("/provider-dashboard");
