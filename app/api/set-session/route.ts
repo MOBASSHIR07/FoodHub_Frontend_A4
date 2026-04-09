@@ -21,3 +21,5 @@ export async function POST(request: NextRequest) {
 
   return NextResponse.json({ ok: true });
 }
+
+// no need this anymore because of async rewrites() in next.config.ts
