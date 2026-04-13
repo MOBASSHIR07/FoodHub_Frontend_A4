@@ -67,10 +67,12 @@ export const getServerSessionAction = async () => {
 
 export const logoutUserAction = async () => {
   const cookieStore = await cookies();
-  
+  const isProduction = process.env.NODE_ENV === "production";
+  const cookieName = isProduction
+    ? "__Secure-better-auth.session_token"
+    : "better-auth.session_token";
 
-  cookieStore.delete("__Secure-better-auth.session_token");
-  
+  cookieStore.delete(cookieName);
   cookieStore.delete("auth_session");
   
   return { success: true };

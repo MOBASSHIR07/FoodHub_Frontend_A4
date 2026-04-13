@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'foodhub-backend-a4-2.onrender.com',
+        hostname: 'foodhub-backend-a4.onrender.com',
       },
       {
         protocol: 'https',

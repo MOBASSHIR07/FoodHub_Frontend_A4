@@ -1,21 +1,17 @@
-"use server";
-
-import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
+import { getAuthCookieString } from "@/lib/auth-cookie";
+import { env } from "@/env";
 
 export const createCategoryAction = async (payload: { name: string; image: string }) => {
   try {
-    const cookieStore = await cookies();
-    const myAuthCookie = cookieStore.get("auth_session")?.value;
+    const cookieString = await getAuthCookieString();
 
-    if (!myAuthCookie) {
+    if (!cookieString) {
       return { success: false, message: "Authentication cookie not found" };
     }
   
 
-    const cookieString = `__Secure-better-auth.session_token=${myAuthCookie}`;
-
-    const res = await fetch(`https://foodhub-backend-a4-2.onrender.com/admin/categories`, {
+    const res = await fetch(`${env.BACKEND_URL}/admin/categories`, {
       method: "POST",
       headers: { 
         "Content-Type": "application/json",
@@ -47,12 +43,9 @@ export const createCategoryAction = async (payload: { name: string; image: strin
 
 export const getAllCategoriesAction = async () => {
   try {
-    // 1. Grab the auth cookie from the browser
-    const cookieStore = await cookies();
-    const myAuthCookie = cookieStore.get("auth_session")?.value;
-    const cookieString = `__Secure-better-auth.session_token=${myAuthCookie}`;
+    const cookieString = await getAuthCookieString();
 
-    const res = await fetch("https://foodhub-backend-a4-2.onrender.com/admin/categories", {
+    const res = await fetch(`${env.BACKEND_URL}/admin/categories`, {
       method: "GET",
       headers: { 
      
@@ -80,13 +73,9 @@ export const getAllCategoriesAction = async () => {
 
 export const deleteCategoryAction = async (id: string) => {
   try {
-    const cookieStore = await cookies();
-    const myAuthCookie = cookieStore.get("auth_session")?.value;
-    
-   
-    const cookieString = `__Secure-better-auth.session_token=${myAuthCookie}`;
+    const cookieString = await getAuthCookieString();
 
-    const res = await fetch(`https://foodhub-backend-a4-2.onrender.com/admin/categories/${id}`, {
+    const res = await fetch(`${env.BACKEND_URL}/admin/categories/${id}`, {
       method: "DELETE",
       headers: { 
         "Content-Type": "application/json",
@@ -114,11 +103,9 @@ export const deleteCategoryAction = async (id: string) => {
 
 export const updateCategoryAction = async (id: string, payload: { name: string, image: string }) => {
   try {
-    const cookieStore = await cookies();
-    const myAuthCookie = cookieStore.get("auth_session")?.value;
-    const cookieString = `__Secure-better-auth.session_token=${myAuthCookie}`;
-
-    const res = await fetch(`https://foodhub-backend-a4-2.onrender.com/admin/categories/${id}`, {
+    const cookieString = await getAuthCookieString();
+    
+    const res = await fetch(`${env.BACKEND_URL}/admin/categories/${id}`, {
       method: "PATCH",
       headers: { 
         "Content-Type": "application/json",

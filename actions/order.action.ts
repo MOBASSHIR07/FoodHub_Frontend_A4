@@ -1,7 +1,6 @@
-"use server";
-
 import { revalidatePath } from "next/cache";
-import { cookies } from "next/headers";
+import { getAuthCookieString } from "@/lib/auth-cookie";
+import { env } from "@/env";
 
 export const getAllOrdersAction = async (params: {
   cuisine?: string;
@@ -11,11 +10,7 @@ export const getAllOrdersAction = async (params: {
   limit?: number;
 }) => {
   try {
-    const cookieStore = await cookies();
-    const myAuthCookie = cookieStore.get("auth_session")?.value;
-    
-   
-    const cookieString = `__Secure-better-auth.session_token=${myAuthCookie}`;
+    const cookieString = await getAuthCookieString();
 
     const query = new URLSearchParams();
     if (params.cuisine) query.append("cuisine", params.cuisine);
@@ -24,7 +19,7 @@ export const getAllOrdersAction = async (params: {
     query.append("page", (params.page || 1).toString());
     query.append("limit", (params.limit || 10).toString());
 
-    const res = await fetch(`https://foodhub-backend-a4-2.onrender.com/admin/orders?${query.toString()}`, {
+    const res = await fetch(`${env.BACKEND_URL}/admin/orders?${query.toString()}`, {
       method: "GET",
       headers: { 
         "Cookie": cookieString 
@@ -48,11 +43,9 @@ export const getAllOrdersAction = async (params: {
 // Fetch provider-specific orders
 export const getProviderOrdersAction = async () => {
   try {
-    const cookieStore = await cookies();
-    const myAuthCookie = cookieStore.get("auth_session")?.value;
-    const cookieString = `__Secure-better-auth.session_token=${myAuthCookie}`;
+    const cookieString = await getAuthCookieString();
 
-    const res = await fetch("https://foodhub-backend-a4-2.onrender.com/order/providers-order", {
+    const res = await fetch(`${env.BACKEND_URL}/order/providers-order`, {
       method: "GET",
       headers: { "Cookie": cookieString },
       cache: "no-store",
@@ -69,11 +62,9 @@ export const getProviderOrdersAction = async () => {
 // Update order status
 export const updateOrderStatusAction = async (orderId: string, status: string) => {
   try {
-    const cookieStore = await cookies();
-    const myAuthCookie = cookieStore.get("auth_session")?.value;
-    const cookieString = `__Secure-better-auth.session_token=${myAuthCookie}`;
+    const cookieString = await getAuthCookieString();
 
-    const res = await fetch(`https://foodhub-backend-a4-2.onrender.com/order/status/${orderId}`, {
+    const res = await fetch(`${env.BACKEND_URL}/order/status/${orderId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -95,11 +86,9 @@ export const updateOrderStatusAction = async (orderId: string, status: string) =
 
 export const getMyOrdersAction = async () => {
   try {
-    const cookieStore = await cookies();
-    const myAuthCookie = cookieStore.get("auth_session")?.value;
-    const cookieString = `__Secure-better-auth.session_token=${myAuthCookie}`;
+    const cookieString = await getAuthCookieString();
 
-    const res = await fetch("https://foodhub-backend-a4-2.onrender.com/order", {
+    const res = await fetch(`${env.BACKEND_URL}/order`, {
       method: "GET",
       headers: { "Cookie": cookieString },
       cache: "no-store",
@@ -114,11 +103,9 @@ export const getMyOrdersAction = async () => {
 
 export const trackOrderAction = async (orderId: string) => {
   try {
-    const cookieStore = await cookies();
-    const myAuthCookie = cookieStore.get("auth_session")?.value;
-    const cookieString = `__Secure-better-auth.session_token=${myAuthCookie}`;
+    const cookieString = await getAuthCookieString();
 
-    const res = await fetch(`https://foodhub-backend-a4-2.onrender.com/order/track/${orderId}`, {
+    const res = await fetch(`${env.BACKEND_URL}/order/track/${orderId}`, {
       method: "GET",
       headers: { "Cookie": cookieString },
       cache: "no-store"
@@ -141,11 +128,9 @@ export const createOrderAction = async (payload: {
   items: { mealId: string; quantity: number }[] 
 }) => {
   try {
-    const cookieStore = await cookies();
-    const myAuthCookie = cookieStore.get("auth_session")?.value;
-    const cookieString = `__Secure-better-auth.session_token=${myAuthCookie}`;
+    const cookieString = await getAuthCookieString();
 
-    const res = await fetch(`https://foodhub-backend-a4-2.onrender.com/order/create`, {
+    const res = await fetch(`${env.BACKEND_URL}/order/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

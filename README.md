@@ -338,7 +338,7 @@ Create a `.env` file in the root directory and add the following variables:
 NODE_ENV=development
 
 # Backend
-BACKEND_URL=https://foodhub-backend-a4-2.onrender.com
+BACKEND_URL=https://foodhub-backend-a4.onrender.com
 
 # App URLs
 NEXT_PUBLIC_APP_URL=http://localhost:5000

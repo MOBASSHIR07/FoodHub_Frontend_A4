@@ -1,7 +1,8 @@
 "use server";
 
-import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
+import { getAuthCookieString } from "@/lib/auth-cookie";
+import { env } from "@/env";
 
 export const updateProviderProfileAction = async (formData: {
   businessName?: string;
@@ -11,11 +12,9 @@ export const updateProviderProfileAction = async (formData: {
   profileImage?: string;
 }) => {
   try {
-    const cookieStore = await cookies();
-    const myAuthCookie = cookieStore.get("auth_session")?.value;
-    const cookieString = `__Secure-better-auth.session_token=${myAuthCookie}`;
+    const cookieString = await getAuthCookieString();
 
-    const res = await fetch("https://foodhub-backend-a4-2.onrender.com/provider/update-profile", {
+    const res = await fetch(`${env.BACKEND_URL}/provider/update-profile`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -27,7 +26,7 @@ export const updateProviderProfileAction = async (formData: {
     const result = await res.json();
 
     if (res.ok && result.success) {
-      revalidatePath("provider-dashboard/kitchen-profile");
+      revalidatePath("/provider-dashboard/kitchen-profile");
       return { success: true, message: result.message };
     }
 

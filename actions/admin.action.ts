@@ -1,20 +1,18 @@
 "use server";
 
-import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
+import { getAuthCookieString } from "@/lib/auth-cookie";
+import { env } from "@/env";
 
 export const updateUserStatusAction = async (userId: string, newStatus: string) => {
   try {
-    const cookieStore = await cookies();
-    const myAuthCookie = cookieStore.get("auth_session")?.value;
+    const cookieString = await getAuthCookieString();
 
-    if (!myAuthCookie) {
+    if (!cookieString) {
       return { success: false, message: "Authentication cookie not found" };
     }
   
-    const cookieString = `__Secure-better-auth.session_token=${myAuthCookie}`;
-
-    const res = await fetch(`https://foodhub-backend-a4-2.onrender.com/admin/users/${userId}`, {
+    const res = await fetch(`${env.BACKEND_URL}/admin/users/${userId}`, {
       method: "PATCH",
       headers: { 
         "Content-Type": "application/json",
@@ -31,7 +29,6 @@ export const updateUserStatusAction = async (userId: string, newStatus: string) 
       };
     }
 
-   
     revalidatePath("/admin-dashboard/users"); 
     
     return { success: true, message: `User status updated to ${newStatus}` };

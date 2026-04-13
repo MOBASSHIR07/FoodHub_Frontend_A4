@@ -1,6 +1,7 @@
 import { RegisterInput } from "@/actions/auth.action";
 import { env } from "@/env";
 import { cookies } from "next/headers";
+import { getAuthCookieString } from "@/lib/auth-cookie";
 
 const AUTH_URL = env.BACKEND_URL;
 export interface LoginInput {
@@ -111,15 +112,12 @@ export const userService = {
 
   getAllUsers: async () => {
     try {
-      const cookieStore = await cookies();
-      const myAuthCookie = cookieStore.get("auth_session")?.value;
+      const cookieString = await getAuthCookieString();
 
-      if (!myAuthCookie) {
+      if (!cookieString) {
         console.error("No auth cookie found");
         return { data: [], ok: false };
       }
-
-      const cookieString = `__Secure-better-auth.session_token=${myAuthCookie}`;
 
       const res = await fetch(`${AUTH_URL}/admin/users`, {
         method: "GET",

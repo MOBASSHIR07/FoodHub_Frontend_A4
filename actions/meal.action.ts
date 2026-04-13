@@ -1,7 +1,8 @@
 "use server";
 
-import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
+import { getAuthCookieString } from "@/lib/auth-cookie";
+import { env } from "@/env";
 
 export const createMealAction = async (data: {
   name: string;
@@ -13,11 +14,9 @@ export const createMealAction = async (data: {
   dietaryPreferences?: string;
 }) => {
   try {
-    const cookieStore = await cookies();
-    const myAuthCookie = cookieStore.get("auth_session")?.value;
-    const cookieString = `__Secure-better-auth.session_token=${myAuthCookie}`;
+    const cookieString = await getAuthCookieString();
 
-    const res = await fetch("https://foodhub-backend-a4-2.onrender.com/meal/add-meal", {
+    const res = await fetch(`${env.BACKEND_URL}/meal/add-meal`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
