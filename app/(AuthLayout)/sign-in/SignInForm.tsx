@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Squirrel, Github, Chrome, Mail, Lock, Loader2 } from "lucide-react";
+import { FcGoogle } from "react-icons/fc";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "sonner";
 import { useForm } from "@tanstack/react-form";
@@ -63,7 +64,7 @@ export default function SignInForm() {
             })}>
 
 
-            <Chrome className="h-4 w-4 text-red-500 mr-2" /> Google
+           <FcGoogle className="h-4 w-4 mr-2" /> Google
           </Button>
           <Button variant="outline" className="rounded-xl h-11 border-border font-bold bg-background text-foreground"
             onClick={() => authClient.signIn.social({
